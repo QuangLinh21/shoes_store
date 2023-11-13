@@ -1,11 +1,15 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImgProductController;
 use App\Http\Controllers\NewController;
 use App\Http\Controllers\ProductController;
+use App\Models\CategoryModel;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,9 +23,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layout_user.page_user.home');
-});
+// Route::get('/', function () {
+//     return view('layout_user.page_user.home');
+// });
+Route::get('/',[HomeController::class,'index']);
 Route::get('logout_admin',[AdminController::class,'logout_admin']);
 Route::post('admin_login',[AdminController::class,'admin_login']);
 
@@ -50,12 +55,39 @@ Route::resource('img_product','App\Http\Controllers\ImgProductController');
 Route::get('delete_img_pro/{img_pro_id}',[ImgProductController::class,'del']);
 Route::get('/active_product_img/{img_pro_id}',[ImgProductController::class,'active_cate']);
 Route::get('/unactive_product_img/{img_pro_id}',[ImgProductController::class,'unactive_cate']);
+Route::get('/active_hot/{product_id}',[ProductController::class,'active_hot']);
+Route::get('/unactive_hot/{product_id}',[ProductController::class,'unactive_hot']);
+Route::get('home/{product_id}',[HomeController::class,'show'])->name('home.show');
 //news
 Route::resource('news','App\Http\Controllers\NewController');
 Route::get('/active-new/{new_id}',[NewController::class,'active_cate']);
 Route::get('/unactive-new/{new_id}',[NewController::class,'unactive_cate']);
 Route::get('delete_new/{new_id}',[NewController::class,'del']);
+Route::get('show_new',[NewController::class,'show_new']);
 
 
 //-------------------------------------frontend----------------------------------
-Route::resource('hpme','App\Http\Controllers\HomeController');
+Route::resource('home','App\Http\Controllers\HomeController');
+Route::get('contact',[HomeController::class,'contact']);
+Route::post('send_contact',[HomeController::class,'send_contact']);
+Route::get('filter_brand',[BrandController::class,'filter_brand']);
+Route::get('filter_category',[CategoryController::class,'filter_category']);
+Route::resource('cart','App\Http\Controllers\CartController');
+Route::get('show_cart',[CartController::class,'show_cart']);
+Route::post('add_to_cart',[CartController::class,'add_to_cart']);
+Route::post('update_cart_qty',[CartController::class,'update_cart_qty']);
+Route::post('update_size',[CartController::class,'update_size']);
+Route::get('delete_cart_item/{product_id}',[CartController::class,'delete_cart_item']);
+
+//Customer
+Route::resource('customer','App\Http\Controllers\AccountController');
+Route::get('login_acc',[AccountController::class,'login_acc']);
+Route::post('login_user',[AccountController::class,'login_user']);
+Route::get('checkout_user',[AccountController::class,'checkout_user']);
+Route::get('payment',[AccountController::class,'payment']);
+
+//payment
+Route::resource('payments','App\Http\Controllers\PaymentController');
+// Route::post('shipping_address','App\Http\Controllers\PaymentController');
+
+

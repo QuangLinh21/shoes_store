@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BrandModel;
 use App\Models\CategoryModel;
+use App\Models\ProductModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -65,9 +67,41 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($cate_id)
     {
-        //
+        $cate_id = $cate_id;
+        $list_cate = CategoryModel::where('cate_status','1')->get();
+        $list_brand = BrandModel::where('brand_status','1')->get();
+        $list_product = ProductModel::where('cate_id',$cate_id)->where('status','1')->orderBy('product_id','desc')->get();
+        return view('layout_user.page_user.main_category.category_product',compact('list_cate','list_brand','list_product','cate_id'));
+    }
+    public function filter_category(Request $request){
+        $product = $request->locsanpham;
+        $cate_product = $request->cate_id;
+        $list_cate = CategoryModel::where('cate_status','1')->get();
+        $list_brand = BrandModel::where('brand_status','1')->get();
+        switch ($product){
+            case 'desc_price_pro':
+                $list_product = ProductModel::orderBy('product_price','desc')->where('cate_id',$cate_product)->get();
+                return view('layout_user.page_user.main_category.filter_category',compact('list_cate','list_brand','list_product','cate_product'));
+                break;
+            case 'asc_price_pro':
+                $list_product = ProductModel::orderBy('product_price','asc')->where('cate_id',$cate_product)->get();
+                return view('layout_user.page_user.main_category.filter_category',compact('list_cate','list_brand','list_product','cate_product'));
+                break;
+            case 'desc_product':
+                $list_product = ProductModel::orderBy('product_id','desc')->where('cate_id',$cate_product)->get();
+                return view('layout_user.page_user.main_category.filter_category',compact('list_cate','list_brand','list_product','cate_product'));
+                break;
+            case 'esc_product':
+                 $list_product = ProductModel::orderBy('product_id','asc')->where('cate_id',$cate_product)->get();
+                 return view('layout_user.page_user.main_category.filter_category',compact('list_cate','list_brand','list_product','cate_product'));
+                break;
+            default:
+                echo 'Không tìm thấy sản phẩm';
+                break;
+
+        }
     }
 
     /**

@@ -24,7 +24,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">Nội dung</label>
-                    <textarea class="form-control" required  id="ckeditor_cate" name="new_content" rows="3"></textarea>
+                    <textarea class="form-control" required  id="ckeditor_new" name="new_content" rows="3"></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="namecategory" class="form-label">Hình ảnh</label>

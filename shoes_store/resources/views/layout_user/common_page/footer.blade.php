@@ -1,10 +1,10 @@
 <footer class="axil-footer-area footer-style-1 footer-dark">
     <!-- Start Footer Top Area  -->
-    <div class="footer-top">
+    <div class="footer-top ">
         <div class="container">
             <div class="row">
                 <!-- Start Single Widget  -->
-                <div class="col-md-3 col-sm-12">
+                <div class="col-md-4 col-sm-12">
                     <div class="axil-footer-widget">
                         <div class="logo mb--30">
                             <a href="index.html">
@@ -29,7 +29,7 @@
                 </div>
                 <!-- End Single Widget  -->
                 <!-- Start Single Widget  -->
-                <div class="col-md-3 col-sm-4">
+                <div class="col-md-4 col-sm-4">
                     <div class="axil-footer-widget">
                         <h5 class="widget-title">ABOUT</h5>
                         <div class="inner">
@@ -45,34 +45,9 @@
                 </div>
                 <!-- End Single Widget  -->
                 <!-- Start Single Widget  -->
-                <div class="col-md-3 col-sm-4">
-                    <div class="axil-footer-widget">
-                        <h5 class="widget-title">ACCOUNT</h5>
-                        <div class="inner">
-                            <ul>
-                                <li><a href="my-account.html">My Account</a></li>
-                                <li><a href="sign-up.html">Login / Register</a></li>
-                                <li><a href="cart.html">Cart</a></li>
-                                <li><a href="wishlist.html">Wishlist</a></li>
-                                <li><a href="shop.html">Shop</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Single Widget  -->
-                <!-- Start Single Widget  -->
-                <div class="col-md-3 col-sm-4">
-                    <div class="axil-footer-widget">
-                        <h5 class="widget-title">SUPPORT</h5>
-                        <div class="inner">
-                            <ul>
-                                <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                <li><a href="terms-of-service.html">Terms Of Use</a></li>
-                                <li><a href="#">FAQ</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                
+                <div class="col-md-4 col-sm-4">
+                    <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fcntt.phuongdong&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
                 </div>
                 <!-- End Single Widget  -->
             </div>
@@ -82,33 +57,7 @@
     <!-- Start Copyright Area  -->
     <div class="copyright-area copyright-default separator-top">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-xl-7 col-lg-12">
-                    <div class="copyright-left d-flex flex-wrap justify-content-xl-start justify-content-center">
-                        <ul class="quick-link">
-                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                            <li><a href="terms-of-service.html">Terms of Service</a></li>
-                        </ul>
-                        <ul class="quick-link">
-                            <li>© 2023. All rights reserved by <a target="_blank"
-                                    href="https://axilthemes.com/">Axilthemes</a>.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-xl-5 col-lg-12">
-                    <div
-                        class="copyright-right d-flex flex-wrap justify-content-xl-end justify-content-center align-items-center">
-                        <span class="card-text">Accept For</span>
-                        <ul class="payment-icons-bottom quick-link">
-                            <li><img src="assets/images/icons/cart/cart-1.png" alt="paypal cart"></li>
-                            <li><img src="assets/images/icons/cart/cart-2.png" alt="paypal cart"></li>
-                            <li><img src="assets/images/icons/cart/cart-3.png" alt="paypal cart"></li>
-                            <li><img src="assets/images/icons/cart/cart-6.png" alt="paypal cart"></li>
-                            <li><img src="assets/images/icons/cart/cart-5.png" alt="paypal cart"></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            2023 All Right Reserved by Nguyen Quang Linh - PDU 
         </div>
     </div>
     <!-- End Copyright Area  -->

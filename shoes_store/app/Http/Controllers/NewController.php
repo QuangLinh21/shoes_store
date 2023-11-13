@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BrandModel;
+use App\Models\CategoryModel;
 use App\Models\NewModel;
+use App\Models\ProductModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -11,6 +14,17 @@ use Illuminate\Support\Facades\Redirect;
 // session_start();
 class NewController extends Controller
 {
+    function getCurrentPageURL() {
+        $pageURL = 'http';
+        if (!empty($_SERVER['HTTPS'])) {if($_SERVER['HTTPS'] == 'on'){$pageURL .= "s";}}
+        $pageURL .= "://";
+        if ($_SERVER["SERVER_PORT"] != "443") {
+          $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
+        } else {
+          $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+        }
+        return $pageURL;
+      }
     // public function check_login()
     // {
     //    $id_admin = Session::get('id_admin');
@@ -31,6 +45,19 @@ class NewController extends Controller
         $key = $request->search;
         $list_new = NewModel::where('new_title','like','%'.$key.'%')->paginate(5)->appends(['search'=>$key]);
         return view('layout_admin.pages_admin.admin_news.list_news',compact('list_new'));
+    }
+
+    public function show_new(){
+        $meta_seo = [
+            'url'=>$this->getCurrentPageURL(),
+            'img'=>'http://127.0.0.1:8000/'
+        ];
+        $list_cate = CategoryModel::where('cate_status','1')->get();
+        $list_brand = BrandModel::where('brand_status','1')->get();
+        $product = ProductModel::where('status',1)->limit(5)->get();
+        $news = NewModel::where('new_status',1)->paginate(5);
+        return view('layout_user.page_user.main_new.news',compact('list_cate','list_brand','news','product','meta_seo'));
+
     }
 
     /**
@@ -76,9 +103,19 @@ class NewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($new_id)
     {
-        
+        $curent = $this->getCurrentPageURL();
+        $list_cate = CategoryModel::where('cate_status','1')->get();
+        $list_brand = BrandModel::where('brand_status','1')->get();
+        $product = ProductModel::where('status',1)->limit(5)->get();
+        $news = NewModel::find($new_id);
+        $meta_seo = [
+            'url'=>$this->getCurrentPageURL(),
+            'img'=>'http://127.0.0.1:8000/'. $news->new_img,
+            'title'=>$news->new_title
+        ];
+        return view('layout_user.page_user.main_new.new_detail',compact('list_cate','list_brand','news','product','meta_seo','curent'));
     }
 
     /**

@@ -65,7 +65,7 @@
     <script src="{{asset('backend/vendors/datatable/js/buttons.flash.min.js')}}"></script>
     <script src="{{asset('backend/js/dashboard_init.js')}}"></script>
     <script src="{{asset('backend/js/custom.js')}}"></script>
-    <script src="{{asset('backend/js/ckeditor5-build-classic/ckeditor.js')}}"></script>
+    {{-- <script src="{{asset('backend/js/ckeditor5-build-classic/ckeditor.js')}}"></script> --}}
     <script>
 		ClassicEditor
 		.create(document.querySelector('#ckeditor_product'))
@@ -74,5 +74,14 @@
 		})
 
 	</script>
+     <script>
+		ClassicEditor
+		.create(document.querySelector('#ckeditor_new'))
+		.catch(error=>{
+			console.error(error);
+		})
+
+	</script>
+    
 </body>
 </html>

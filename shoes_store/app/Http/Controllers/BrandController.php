@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\BrandModel;
+use App\Models\CategoryModel;
+use App\Models\ProductModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -75,9 +77,14 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($brand_id)
     {
-        //
+        $brand_id = $brand_id;
+        $list_cate = CategoryModel::where('cate_status','1')->get();
+        $list_brand = BrandModel::where('brand_status','1')->get();
+        $list_product = ProductModel::where('brand_id',$brand_id)->where('status','1')->orderBy('product_id','desc')->get();
+        return view('layout_user.page_user.main_brand.brand_product',compact('list_cate','list_brand','list_product','brand_id'));
+
     }
 
     /**
@@ -149,5 +156,33 @@ class BrandController extends Controller
      public function unactive_brand($brand_id){
         BrandModel::where('brand_id',$brand_id)->update(['brand_status'=>0]);
          return Redirect()->back()->with('message','Cập nhật trạng thái thành công')->with('error','Cập nhật trạng thái không thành công !');
+     }
+     public function filter_brand(Request $request){
+        $product = $request->locsanpham;
+        $brand_product = $request->brand_id;
+        $list_cate = CategoryModel::where('cate_status','1')->get();
+        $list_brand = BrandModel::where('brand_status','1')->get();
+        switch ($product){
+            case 'desc_price_pro':
+                $list_product = ProductModel::orderBy('product_price','desc')->where('brand_id',$brand_product)->get();
+                return view('layout_user.page_user.main_brand.filter_brand',compact('list_cate','list_brand','list_product','brand_product'));
+                break;
+            case 'asc_price_pro':
+                $list_product = ProductModel::orderBy('product_price','asc')->where('brand_id',$brand_product)->get();
+                return view('layout_user.page_user.main_brand.filter_brand',compact('list_cate','list_brand','list_product','brand_product'));
+                break;
+            case 'desc_product':
+                $list_product = ProductModel::orderBy('product_id','desc')->where('brand_id',$brand_product)->get();
+                return view('layout_user.page_user.main_brand.filter_brand',compact('list_cate','list_brand','list_product','brand_product'));
+                break;
+            case 'esc_product':
+                 $list_product = ProductModel::orderBy('product_id','asc')->where('brand_id',$brand_product)->get();
+                 return view('layout_user.page_user.main_brand.filter_brand',compact('list_cate','list_brand','list_product','brand_product'));
+                break;
+            default:
+                echo 'Không tìm thấy sản phẩm';
+                break;
+
+        }
      }
 }

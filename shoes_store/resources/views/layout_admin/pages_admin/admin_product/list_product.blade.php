@@ -43,7 +43,9 @@
                                 <th scope="col">Tên danh mục</th>
                                 <th scope="col">Tên sản phẩm</th>
                                 <th scope="col">Giá</th>
+                                <th scope="col">Ảnh chính</th>
                                 <th scope="col">Ảnh sản phẩm</th>
+                                <th scope="col">Nổi bật</th>
                                 <th scope="col">Trạng thái</th>
                                 <th scope="col" colspan="2">Thao tác</th>
                             </tr>
@@ -58,7 +60,23 @@
                                 <td>{{$item->product_name}}</td>
                                 {{-- <td>{{$item->product_des}}</td> --}}
                                 <td>{{ number_format($item->product_price, 0, ',', '.') }} VNĐ</td>
+                                <td><img src="{{asset($item->img_main)}}" style="width: 90px"></td>
                                 <td><a href="{{route('img_product.show',$item->product_id)}}">Ảnh sản phẩm</a></td>
+                                <td>
+                                    <?php
+                                    if ($item->product_hot == 0) {
+                                    ?>
+                                    <a href="{{ URL::to('active_hot/' . $item->product_id) }}"
+                                        class="btn status_btn_st text-white">Ẩn</a>
+                                    <?php
+                                    } else {
+                                    ?>
+                                    <a href="{{ URL::to('unactive_hot/' . $item->product_id) }}"
+                                        class="btn  hot_btn text-white">Hiển Thị</a>
+                                    <?php
+                                    }
+                                    ?>
+                                </td>
                                 <td>
                                     <?php
                                     if ($item->status == 0) {

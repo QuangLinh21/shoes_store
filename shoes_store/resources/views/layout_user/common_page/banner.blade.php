@@ -14,98 +14,42 @@
             <div class="col-xl-6 col-lg-6">
                 <div class="main-slider-large-thumb">
                     <div class="slider-thumb-activation-two axil-slick-dots">
+                        @foreach ($hot_product as $item)
                         <div class="single-slide slick-slide">
                             <div class="axil-product product-style-five">
                                 <div class="thumbnail">
-                                    <a href="single-product-7.html">
-                                        <img src="assets/images/product/nft/product-17.png"
+                                    <a href="javascript:void(0)"
+                                    data-bs-toggle="modal"
+                                    id="show-product"
+                                    data-url="{{route('home.show',$item->product_id) }}">
+                                        <img src="{{asset($item->img_main)}}"
                                             alt="Product Images">
                                     </a>
 
                                 </div>
                                 <div class="product-content">
                                     <div class="inner">
-                                        <h5 class="title"><a href="single-product-7.html">Anime #001</a></h5>
+                                        <h5 class="title"><a href="javascript:void(0)"
+                                            data-bs-toggle="modal"
+                                            id="show-product"
+                                            data-url="{{route('home.show',$item->product_id) }}">{{$item->product_name}}</a></h5>
                                         <div class="product-price-variant">
-                                            <span class="price current-price">$5000</span>
+                                            <span class="price current-price">{{ number_format($item->product_price, 0, ',', '.') }} VNĐ</span>
                                         </div>
                                         <ul class="cart-action">
-                                            <li class="select-option"><a href="single-product-7.html">Buy
+                                            <li class="select-option"><a href="javascript:void(0)"
+                                                data-bs-toggle="modal"
+                                                id="show-product"
+                                                data-url="{{route('home.show',$item->product_id) }}">Buy
                                                     Product</a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="single-slide slick-slide">
-                            <div class="axil-product product-style-five">
-                                <div class="thumbnail">
-                                    <a href="single-product-7.html">
-                                        <img src="assets/images/product/nft/product-16.png"
-                                            alt="Product Images">
-                                    </a>
-
-                                </div>
-                                <div class="product-content">
-                                    <div class="inner">
-                                        <h5 class="title"><a href="single-product-7.html">Anime #002</a></h5>
-                                        <div class="product-price-variant">
-                                            <span class="price current-price">$5000</span>
-                                        </div>
-                                        <ul class="cart-action">
-                                            <li class="select-option"><a href="single-product-7.html">Buy
-                                                    Product</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single-slide slick-slide">
-                            <div class="axil-product product-style-five">
-                                <div class="thumbnail">
-                                    <a href="single-product-7.html">
-                                        <img src="assets/images/product/nft/product-15.png"
-                                            alt="Product Images">
-                                    </a>
-
-                                </div>
-                                <div class="product-content">
-                                    <div class="inner">
-                                        <h5 class="title"><a href="single-product-7.html">Anime #003</a></h5>
-                                        <div class="product-price-variant">
-                                            <span class="price current-price">$5000</span>
-                                        </div>
-                                        <ul class="cart-action">
-                                            <li class="select-option"><a href="single-product-7.html">Buy
-                                                    Product</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single-slide slick-slide">
-                            <div class="axil-product product-style-five">
-                                <div class="thumbnail">
-                                    <a href="single-product-7.html">
-                                        <img src="assets/images/product/nft/product-1.png"
-                                            alt="Product Images">
-                                    </a>
-
-                                </div>
-                                <div class="product-content">
-                                    <div class="inner">
-                                        <h5 class="title"><a href="single-product-7.html">Anime #004</a></h5>
-                                        <div class="product-price-variant">
-                                            <span class="price current-price">$5000</span>
-                                        </div>
-                                        <ul class="cart-action">
-                                            <li class="select-option"><a href="single-product-7.html">Buy
-                                                    Product</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
+                        
+                       
                     </div>
                 </div>
             </div>

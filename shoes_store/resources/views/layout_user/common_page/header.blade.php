@@ -63,65 +63,30 @@
                             </a>
                         </div>
                         <ul class="mainmenu">
+                            <li >
+                                <a href="{{URL::to('/')}}">Trang chủ</a>
+                            </li>
                             <li class="menu-item-has-children">
-                                <a href="#">Home</a>
+                                <a href="#">Thương hiệu</a>
                                 <ul class="axil-submenu">
-                                    <li><a href="index-1.html">Home - Electronics</a></li>
-                                    <li><a href="index-2.html">Home - NFT</a></li>
-                                    <li><a href="index-3.html">Home - Fashion</a></li>
-                                    <li><a href="index-4.html">Home - Jewellery</a></li>
-                                    <li><a href="index-5.html">Home - Furniture</a></li>
-                                    <li><a href="index-7.html">Home - Multipurpose</a></li>
-                                    <li><a href="https://new.axilthemes.com/demo/template/etrade-rtl/">RTL
-                                            Version</a></li>
+                                    @foreach ($list_brand as $item)
+                                    <li><a href="{{route('brand.show',$item->brand_id)}}">{{$item->brand_name}}</a></li>
+                                    @endforeach
+                                    
                                 </ul>
                             </li>
                             <li class="menu-item-has-children">
-                                <a href="#">Shop</a>
+                                <a href="#">Danh mục</a>
                                 <ul class="axil-submenu">
-                                    <li><a href="shop-sidebar.html">Shop With Sidebar</a></li>
-                                    <li><a href="shop.html">Shop no Sidebar</a></li>
-                                    <li><a href="single-product.html">Product Variation 1</a></li>
-                                    <li><a href="single-product-2.html">Product Variation 2</a></li>
-                                    <li><a href="single-product-3.html">Product Variation 3</a></li>
-                                    <li><a href="single-product-4.html">Product Variation 4</a></li>
-                                    <li><a href="single-product-5.html">Product Variation 5</a></li>
-                                    <li><a href="single-product-6.html">Product Variation 6</a></li>
-                                    <li><a href="single-product-7.html">Product Variation 7</a></li>
-                                    <li><a href="single-product-8.html">Product Variation 8</a></li>
+                                    @foreach ($list_cate as $item)
+                                    <li><a href="{{route('category.show',$item->cate_id)}}">{{$item->cate_name}}</a></li>
+                                    @endforeach
                                 </ul>
                             </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">Pages</a>
-                                <ul class="axil-submenu">
-                                    <li><a href="wishlist.html">Wishlist</a></li>
-                                    <li><a href="cart.html">Cart</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
-                                    <li><a href="my-account.html">Account</a></li>
-                                    <li><a href="sign-up.html">Sign Up</a></li>
-                                    <li><a href="sign-in.html">Sign In</a></li>
-                                    <li><a href="forgot-password.html">Forgot Password</a></li>
-                                    <li><a href="reset-password.html">Reset Password</a></li>
-                                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                    <li><a href="coming-soon.html">Coming Soon</a></li>
-                                    <li><a href="404.html">404 Error</a></li>
-                                    <li><a href="typography.html">Typography</a></li>
-                                </ul>
+                            <li >
+                                <a href="{{url::to('show_new')}}">Tin tức</a>
                             </li>
-                            <li><a href="about-us.html">About</a></li>
-                            <li class="menu-item-has-children">
-                                <a href="#">Blog</a>
-                                <ul class="axil-submenu">
-                                    <li><a href="blog.html">Blog List</a></li>
-                                    <li><a href="blog-grid.html">Blog Grid</a></li>
-                                    <li><a href="blog-details.html">Standard Post</a></li>
-                                    <li><a href="blog-gallery.html">Gallery Post</a></li>
-                                    <li><a href="blog-video.html">Video Post</a></li>
-                                    <li><a href="blog-audio.html">Audio Post</a></li>
-                                    <li><a href="blog-quote.html">Quote Post</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="{{URL::to('contact')}}">Liên hệ</a></li>
                         </ul>
                     </nav>
                     <!-- End Mainmanu Nav -->
@@ -142,13 +107,26 @@
                             </a>
                         </li>
                         <li class="wishlist">
-                            <a href="wishlist.html">
-                                <i class="flaticon-heart"></i>
+                            <?php
+                            $customer_id = Session::get('cus_id');
+                            if($customer_id==null){
+                                ?>
+                            <a href="{{ URL::to('login_acc') }}">
+                                <i class="fa-solid fa-credit-card" style="font-size: 20px;"></i>
                             </a>
+                            <?php
+                            } else {?>
+                              <a href="{{URL::to('payment')}}">
+                                <i class="fa-solid fa-credit-card" style="font-size: 20px;"></i>
+                            </a>
+                            <?php
+                            }
+                            ?>
+                          
                         </li>
                         <li class="shopping-cart">
-                            <a href="#" class="cart-dropdown-btn">
-                                <span class="cart-count">3</span>
+                            <a href="{{URL::to('show_cart')}}" >
+                                {{-- <span class="cart-count">3</span> --}}
                                 <i class="flaticon-shopping-cart"></i>
                             </a>
                         </li>
@@ -157,25 +135,37 @@
                                 <i class="flaticon-person"></i>
                             </a>
                             <div class="my-account-dropdown">
-                                <span class="title">QUICKLINKS</span>
+                                <span class="title">KHÁCH HÀNG</span>
                                 <ul>
+                                  
                                     <li>
-                                        <a href="my-account.html">My Account</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Initiate return</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Support</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Language</a>
+                                        <a href="#"> 
+                                             @php
+                                            $cus_name = Session::get('cus_name');
+                                          
+                                            if ($cus_name) {
+                                                echo $cus_name;
+                                            }
+                                        @endphp</a>
                                     </li>
                                 </ul>
                                 <div class="login-btn">
-                                    <a href="sign-in.html" class="axil-btn btn-bg-primary">Login</a>
+                                    
+                                    <?php
+                                    $cus_id = Session::get('cus_id');
+                                    // dd( $cus_id );
+                                    if($cus_id == ''){
+                                       ?>
+                                   <a href="{{URL::to('login_acc')}}" class="axil-btn btn-bg-primary">Login</a>
+                                   <?php
+                                    }
+                                    else{  ?>
+                                   <a href="{{ URL::to('checkout_user') }}" class="axil-btn btn-bg-primary">Logout</a>
+                                   <?php
+                                    }
+                                   ?>
                                 </div>
-                                <div class="reg-footer text-center">No account yet? <a href="sign-up.html"
+                                <div class="reg-footer text-center">No account yet? <a href="{{URL::to('customer')}}"
                                         class="btn-link">REGISTER HERE.</a></div>
                             </div>
                         </li>

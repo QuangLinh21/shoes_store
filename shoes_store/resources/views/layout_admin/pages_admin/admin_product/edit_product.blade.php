@@ -43,6 +43,11 @@
                     <input type="number" class="form-control" required name="product_price" value="{{$product->product_price}}" >
                 </div>
                 <div class="mb-3">
+                    <label for="namecategory" class="form-label">Hình ảnh</label>
+                    <input type="file" class="form-control"  name="img_main" id="namecategory1">
+                    <img src="{{asset($product->img_main)}}" alt="" class="mt-3" style="width:auto; height:100px">
+                </div>
+                <div class="mb-3">
                     <button class="btn btn-success" type="submit">Cập nhật</button>
                 </div>
             </div>

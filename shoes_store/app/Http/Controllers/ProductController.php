@@ -69,25 +69,30 @@ class ProductController extends Controller
         $product['product_name'] = $request->product_name;
         $product['product_des'] = $request->product_des;
         $product['product_price'] = $request->product_price;
-        $product['status'] = $request->status;
-        $product->save();
-
-        $img_product = new ImageProductModel();
-        $img_product['product_id'] = $product->product_id;
-        $img_product['img_product']=request('img_product');
-        if($request->hasFile('img_product')){
-            $file = $request->file('img_product');
+        $data['img_main'] = $request->img_product;
+        if ($request->hasFile('img_main')) {
+            $file = $request->file('img_main');
             //dặt tên cho file img1
-            $filename = time().'_'.$file->getClientOriginalName();
+            $filename = time() . '_' . $file->getClientOriginalName();
             //định nghĩa dẫn ssex upload lên
             $path_upload = 'uploads/products/';
-            $request->file('img_product')->move($path_upload,$filename);
-            $img_product ->img_product = $path_upload.$filename;
+            $request->file('img_main')->move($path_upload, $filename);
+            $product->img_main = $path_upload . $filename;
         }
-        $img_product['img_status'] = 1;
-        $img_product->save();
-
-        if ($product && $img_product) {
+        $data['img_main2'] = $request->img_main2;
+        if ($request->hasFile('img_main2')) {
+            $file = $request->file('img_main2');
+            //dặt tên cho file img1
+            $filename = time() . '_' . $file->getClientOriginalName();
+            //định nghĩa dẫn ssex upload lên
+            $path_upload = 'uploads/products/';
+            $request->file('img_main2')->move($path_upload, $filename);
+            $product->img_main2 = $path_upload . $filename;
+        }
+        $product['product_hot'] = 0;
+        $product['status'] = $request->status;
+        $product->save();
+        if ($product) {
             return redirect()->back()->with('message', 'Thêm mới thành công');
         } else {
             return redirect()->back()->with('error', 'Thêm mới không thành công');
@@ -136,6 +141,18 @@ class ProductController extends Controller
         $data['product_name']=$request->product_name;
         $data['product_des']=$request->product_des;
         $data['product_price']=$request->product_price;
+        if($request->hasFile('img_main')){ //kiểm tra img có đc chọn
+            @unlink(public_path($data->img)); //xóa file cũ
+            // get new_image
+            $file = $request->file('img_main');
+            $filename = time().'_'.$file->getClientOriginalName(); // $file->getClientOriginalName() == tên ban đầu của image
+            $path_upload = 'uploads/products/';
+             // Thực hiện upload file
+             $request->file('img_main')->move($path_upload,$filename);
+             $data->img_main = $path_upload.$filename;
+    
+             $data->img_main = $path_upload.$filename; // gán giá trị ảnh mới cho thuộc tính image của đối tượng
+           }
         $data->save();
         return redirect('product');
     }
@@ -169,5 +186,15 @@ class ProductController extends Controller
         {
             return Redirect()->back()->with('error','Xóa danh mục không thành công');
         }
+    }
+    public function active_hot($product_id)
+    {
+        ProductModel::where('product_id', $product_id)->update(['product_hot' => 1]);
+        return Redirect()->back()->with('message', 'Cập nhật trạng thái thành công')->with('error', 'Cập nhật trạng thái không thành công !');
+    }
+    public function unactive_hot($product_id)
+    {
+        ProductModel::where('product_id', $product_id)->update(['product_hot' => 0]);
+        return Redirect()->back()->with('message', 'Cập nhật trạng thái thành công')->with('error', 'Cập nhật trạng thái không thành công !');
     }
 }

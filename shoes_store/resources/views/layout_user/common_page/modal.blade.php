@@ -7,124 +7,62 @@
             </div>
             <div class="modal-body">
                 <div class="single-product-thumb">
+                   <form action="{{URL::to('add_to_cart')}}" method="post">
+                    {{ csrf_field() }}
                     <div class="row">
-                        <div class="col-lg-7 mb--40">
+                        <div class="col-lg-6 mb--40">
                             <div class="row">
-                                <div class="col-lg-10 order-lg-2">
-                                    <div
-                                        class="single-product-thumbnail product-large-thumbnail axil-product thumbnail-badge zoom-gallery">
+                                <div class="col-lg-12">
+                                    <div class="product-large-thumbnail-2 single-product-thumbnail axil-product slick-layout-wrapper--15 axil-slick-arrow arrow-both-side-3">
                                         <div class="thumbnail">
-                                            <img src="assets/images/product/product-big-01.png"
-                                                alt="Product Images">
-                                            <div class="label-block label-right">
-                                                <div class="product-badget">20% OFF</div>
-                                            </div>
-                                            <div class="product-quick-view position-view">
-                                                <a href="assets/images/product/product-big-01.png"
-                                                    class="popup-zoom">
-                                                    <i class="far fa-search-plus"></i>
-                                                </a>
-                                            </div>
+                                            <img src="" id="product_images_1"  alt="Product Images">
                                         </div>
                                         <div class="thumbnail">
-                                            <img src="assets/images/product/product-big-02.png"
-                                                alt="Product Images">
-                                            <div class="label-block label-right">
-                                                <div class="product-badget">20% OFF</div>
-                                            </div>
-                                            <div class="product-quick-view position-view">
-                                                <a href="assets/images/product/product-big-02.png"
-                                                    class="popup-zoom">
-                                                    <i class="far fa-search-plus"></i>
-                                                </a>
-                                            </div>
+                                            <img src="" id="product_images_2"  alt="Product Images">
                                         </div>
-                                        <div class="thumbnail">
-                                            <img src="assets/images/product/product-big-03.png"
-                                                alt="Product Images">
-                                            <div class="label-block label-right">
-                                                <div class="product-badget">20% OFF</div>
-                                            </div>
-                                            <div class="product-quick-view position-view">
-                                                <a href="assets/images/product/product-big-03.png"
-                                                    class="popup-zoom">
-                                                    <i class="far fa-search-plus"></i>
-                                                </a>
-                                            </div>
-                                        </div>
+                                       
                                     </div>
                                 </div>
-                                <div class="col-lg-2 order-lg-1">
-                                    <div class="product-small-thumb small-thumb-wrapper">
-                                        <div class="small-thumb-img">
-                                            <img src="assets/images/product/product-thumb/thumb-08.png"
-                                                alt="thumb image">
+                                <div class="col-lg-12 d-none">
+                                    <div class="small-thumb-wrapper product-small-thumb-2 small-thumb-style-two small-thumb-style-three">
+                                        <div class="small-thumb-img ">
+                                            <img src="" id="product_images_1" alt="samll-thumb">
                                         </div>
-                                        <div class="small-thumb-img">
-                                            <img src="assets/images/product/product-thumb/thumb-07.png"
-                                                alt="thumb image">
-                                        </div>
-                                        <div class="small-thumb-img">
-                                            <img src="assets/images/product/product-thumb/thumb-09.png"
-                                                alt="thumb image">
+                                        <div class="small-thumb-img ">
+                                            <img src="" id="product_images_2" alt="samll-thumb">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-5 mb--40">
+                        <div class="col-lg-6 mb--40">
                             <div class="single-product-content">
                                 <div class="inner">
-                                    <div class="product-rating">
-                                        <div class="star-rating">
-                                            <img src="assets/images/icons/rate.png" alt="Rate Images">
-                                        </div>
-                                        <div class="review-link">
-                                            <a href="#">(<span>1</span> customer reviews)</a>
-                                        </div>
-                                    </div>
-                                    <h3 class="product-title">Serif Coffee Table</h3>
-                                    <span class="price-amount">$155.00 - $255.00</span>
+                                    <h2 class="product-title" id="product_name" ></h2>
+                                    <span class="price-amount" id="product_price"></span>
                                     <ul class="product-meta">
-                                        <li><i class="fal fa-check"></i>In stock</li>
-                                        <li><i class="fal fa-check"></i>Free delivery available</li>
-                                        <li><i class="fal fa-check"></i>Sales 30% Off Use Code: MOTIVE30</li>
+                                        <li><i class="fal fa-check"></i>Chẩn hàng chính hãng</li>
+                                        <li><i class="fal fa-check"></i>Free ship trong vòng bán kính 30km</li>
+                                        <li><i class="fal fa-check"></i>Hỗ trợ đổi trả trong vòng 7 ngày</li>
                                     </ul>
-                                    <p class="description">In ornare lorem ut est dapibus, ut tincidunt nisi
-                                        pretium. Integer ante est, elementum eget magna. Pellentesque sagittis
-                                        dictum libero, eu dignissim tellus.</p>
+                                    <p class="description" id="product_des"></p>
 
                                     <div class="product-variations-wrapper">
 
-                                        <!-- Start Product Variation  -->
-                                        <div class="product-variation">
-                                            <h6 class="title">Colors:</h6>
-                                            <div class="color-variant-wrapper">
-                                                <ul class="color-variant mt--0">
-                                                    <li class="color-extra-01 active"><span><span
-                                                                class="color"></span></span>
-                                                    </li>
-                                                    <li class="color-extra-02"><span><span
-                                                                class="color"></span></span>
-                                                    </li>
-                                                    <li class="color-extra-03"><span><span
-                                                                class="color"></span></span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!-- End Product Variation  -->
 
                                         <!-- Start Product Variation  -->
-                                        <div class="product-variation">
+                                        <div class="product-variation product-size-variation">
                                             <h6 class="title">Size:</h6>
-                                            <ul class="range-variant">
-                                                <li>xs</li>
-                                                <li>s</li>
-                                                <li>m</li>
-                                                <li>l</li>
-                                                <li>xl</li>
-                                            </ul>
+                                           <select name="size">
+                                            <option value="36">26</option>
+                                            <option value="37">37</option>
+                                            <option value="38">38</option>
+                                            <option value="39">39</option>
+                                            <option value="40">40</option>
+                                            <option value="41">41</option>
+                                            <option value="42">42</option>
+                                            <option value="43">43</option>
+                                           </select>
                                         </div>
                                         <!-- End Product Variation  -->
 
@@ -133,201 +71,62 @@
                                     <!-- Start Product Action Wrapper  -->
                                     <div class="product-action-wrapper d-flex-center">
                                         <!-- Start Quentity Action  -->
-                                        <div class="pro-qty"><input type="text" value="1"></div>
+                                        <div class="pro-qty mr--20"><input type="text" value="1" name="qty"></div>
+                                       <input type="hidden" id="product_id" name="product_id">
                                         <!-- End Quentity Action  -->
 
                                         <!-- Start Product Action  -->
                                         <ul class="product-action d-flex-center mb--0">
-                                            <li class="add-to-cart"><a href="cart.html"
-                                                    class="axil-btn btn-bg-primary">Add to Cart</a></li>
-                                            <li class="wishlist"><a href="wishlist.html"
-                                                    class="axil-btn wishlist-btn"><i
-                                                        class="far fa-heart"></i></a></li>
+                                            <li class="add-to-cart"><button class="axil-btn btn-bg-primary">Add to Cart</button></li>
+                                            <li class="wishlist"><a href="wishlist.html" class="axil-btn wishlist-btn"><i class="far fa-heart"></i></a></li>
                                         </ul>
                                         <!-- End Product Action  -->
 
                                     </div>
                                     <!-- End Product Action Wrapper  -->
+
+                                    {{-- <div class="product-desc-wrapper pt--80 pt_sm--60">
+                                        <h4 class="primary-color mb--40 desc-heading">Description</h4>
+                                        <div class="single-desc mb--30">
+                                            <h5 class="title">Specifications:</h5>
+                                            <p>We’ve created a full-stack structure for our working workflow processes, were from the funny the century initial all the made, have spare to negatives. But the structure was from the funny the century rather,
+                                                initial all the made, have spare to negatives.</p>
+                                        </div>
+                                        <div class="single-desc mb--5">
+                                            <h5 class="title">Care & Maintenance:</h5>
+                                            <p>Use warm water to describe us as a product team that creates amazing UI/UX experiences, by crafting top-notch user experience.</p>
+                                        </div>
+                                        <ul class="pro-des-features pro-desc-style-two pt-10">
+                                            <li class="single-features">
+                                                <div class="icon">
+                                                    <img src="assets/images/product/product-thumb/icon-3.png" alt="icon">
+                                                </div>
+                                                Easy Returns
+                                            </li>
+                                            <li class="single-features">
+                                                <div class="icon">
+                                                    <img src="assets/images/product/product-thumb/icon-2.png" alt="icon">
+                                                </div>
+                                                Quality Service
+                                            </li>
+                                            <li class="single-features">
+                                                <div class="icon">
+                                                    <img src="assets/images/product/product-thumb/icon-1.png" alt="icon">
+                                                </div>
+                                                Original Product
+                                            </li>
+                                        </ul>
+                                        <!-- End .pro-des-features -->
+                                    </div> --}}
+                                    <!-- End .product-desc-wrapper -->
                                 </div>
                             </div>
                         </div>
                     </div>
+                   </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="header-search-modal" id="header-search-modal">
-    <button class="card-close sidebar-close"><i class="fas fa-times"></i></button>
-    <div class="header-search-wrap">
-        <div class="card-header">
-            <form action="#">
-                <div class="input-group">
-                    <input type="search" class="form-control" name="prod-search" id="prod-search"
-                        placeholder="Write Something....">
-                    <button type="submit" class="axil-btn btn-bg-primary"><i
-                            class="far fa-search"></i></button>
-                </div>
-            </form>
-        </div>
-        <div class="card-body">
-            <div class="search-result-header">
-                <h6 class="title">24 Result Found</h6>
-                <a href="shop.html" class="view-all">View All</a>
-            </div>
-            <div class="psearch-results">
-                <div class="axil-product-list">
-                    <div class="thumbnail">
-                        <a href="single-product.html">
-                            <img src="assets/images/product/electric/product-09.png" alt="Yantiti Leather Bags">
-                        </a>
-                    </div>
-                    <div class="product-content">
-                        <div class="product-rating">
-                            <span class="rating-icon">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fal fa-star"></i>
-                            </span>
-                            <span class="rating-number"><span>100+</span> Reviews</span>
-                        </div>
-                        <h6 class="product-title"><a href="single-product.html">Media Remote</a></h6>
-                        <div class="product-price-variant">
-                            <span class="price current-price">$29.99</span>
-                            <span class="price old-price">$49.99</span>
-                        </div>
-                        <div class="product-cart">
-                            <a href="cart.html" class="cart-btn"><i class="fal fa-shopping-cart"></i></a>
-                            <a href="wishlist.html" class="cart-btn"><i class="fal fa-heart"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="axil-product-list">
-                    <div class="thumbnail">
-                        <a href="single-product.html">
-                            <img src="assets/images/product/electric/product-09.png" alt="Yantiti Leather Bags">
-                        </a>
-                    </div>
-                    <div class="product-content">
-                        <div class="product-rating">
-                            <span class="rating-icon">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fal fa-star"></i>
-                            </span>
-                            <span class="rating-number"><span>100+</span> Reviews</span>
-                        </div>
-                        <h6 class="product-title"><a href="single-product.html">Media Remote</a></h6>
-                        <div class="product-price-variant">
-                            <span class="price current-price">$29.99</span>
-                            <span class="price old-price">$49.99</span>
-                        </div>
-                        <div class="product-cart">
-                            <a href="cart.html" class="cart-btn"><i class="fal fa-shopping-cart"></i></a>
-                            <a href="wishlist.html" class="cart-btn"><i class="fal fa-heart"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Header Search Modal End -->
-<div class="cart-dropdown" id="cart-dropdown">
-    <div class="cart-content-wrap">
-        <div class="cart-header">
-            <h2 class="header-title">Cart review</h2>
-            <button class="cart-close sidebar-close"><i class="fas fa-times"></i></button>
-        </div>
-        <div class="cart-body">
-            <ul class="cart-item-list">
-                <li class="cart-item">
-                    <div class="item-img">
-                        <a href="single-product.html"><img src="assets/images/product/electric/product-01.png"
-                                alt="Commodo Blown Lamp"></a>
-                        <button class="close-btn"><i class="fas fa-times"></i></button>
-                    </div>
-                    <div class="item-content">
-                        <div class="product-rating">
-                            <span class="icon">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </span>
-                            <span class="rating-number">(64)</span>
-                        </div>
-                        <h3 class="item-title"><a href="single-product-3.html">Wireless PS Handler</a></h3>
-                        <div class="item-price"><span class="currency-symbol">$</span>155.00</div>
-                        <div class="pro-qty item-quantity">
-                            <input type="number" class="quantity-input" value="15">
-                        </div>
-                    </div>
-                </li>
-                <li class="cart-item">
-                    <div class="item-img">
-                        <a href="single-product-2.html"><img src="assets/images/product/electric/product-02.png"
-                                alt="Commodo Blown Lamp"></a>
-                        <button class="close-btn"><i class="fas fa-times"></i></button>
-                    </div>
-                    <div class="item-content">
-                        <div class="product-rating">
-                            <span class="icon">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </span>
-                            <span class="rating-number">(4)</span>
-                        </div>
-                        <h3 class="item-title"><a href="single-product-2.html">Gradient Light Keyboard</a></h3>
-                        <div class="item-price"><span class="currency-symbol">$</span>255.00</div>
-                        <div class="pro-qty item-quantity">
-                            <input type="number" class="quantity-input" value="5">
-                        </div>
-                    </div>
-                </li>
-                <li class="cart-item">
-                    <div class="item-img">
-                        <a href="single-product-3.html"><img src="assets/images/product/electric/product-03.png"
-                                alt="Commodo Blown Lamp"></a>
-                        <button class="close-btn"><i class="fas fa-times"></i></button>
-                    </div>
-                    <div class="item-content">
-                        <div class="product-rating">
-                            <span class="icon">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </span>
-                            <span class="rating-number">(6)</span>
-                        </div>
-                        <h3 class="item-title"><a href="single-product.html">HD CC Camera</a></h3>
-                        <div class="item-price"><span class="currency-symbol">$</span>200.00</div>
-                        <div class="pro-qty item-quantity">
-                            <input type="number" class="quantity-input" value="100">
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="cart-footer">
-            <h3 class="cart-subtotal">
-                <span class="subtotal-title">Subtotal:</span>
-                <span class="subtotal-amount">$610.00</span>
-            </h3>
-            <div class="group-btn">
-                <a href="cart.html" class="axil-btn btn-bg-primary viewcart-btn">View Cart</a>
-                <a href="checkout.html" class="axil-btn btn-bg-secondary checkout-btn">Checkout</a>
-            </div>
-        </div>
-    </div>
-</div>
+

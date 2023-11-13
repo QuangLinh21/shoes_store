@@ -35,7 +35,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">Mô tả</label>
-                    <textarea class="form-control" required   name="product_des" rows="3" id="ckeditor_product"></textarea>
+                    <textarea class="form-control" required   name="product_des" rows="3"></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="namecategory" class="form-label">Giá</label>
@@ -43,7 +43,11 @@
                 </div>
                 <div class="mb-3">
                     <label for="namecategory" class="form-label">Hình ảnh</label>
-                    <input type="file" class="form-control" required name="img_product" >
+                    <input type="file" class="form-control" required name="img_main" >
+                </div>
+                <div class="mb-3">
+                    <label for="namecategory" class="form-label">Hình ảnh</label>
+                    <input type="file" class="form-control" required name="img_main2" >
                 </div>
                 <div class="mb-3">
                     <label for="namecategory" class="form-label">Trạng thái</label>
