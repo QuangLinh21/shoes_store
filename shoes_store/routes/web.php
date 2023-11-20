@@ -94,9 +94,13 @@ Route::resource('payments','App\Http\Controllers\PaymentController');
 Route::get('delete_address_user/{ship_id}',[PaymentController::class,'delete_address_user']);
 Route::post('payment_bill',[PaymentController::class,'payment_bill']);
 Route::get('admin_payment',[PaymentController::class,'admin_payment']);
+Route::post('payment_vnpay',[PaymentController::class,'payment_vnpay']);
 Route::get('delete_paymethod/{pay_id}',[PaymentController::class,'delete_paymethod']);
 Route::get('active_paymethod/{pay_id}',[PaymentController::class,'active_paymethod']);
 Route::get('unactive_paymethod/{pay_id}',[PaymentController::class,'unactive_paymethod']);
-Route::get('admin_order',[PaymentController::class,'admin_order']);
+Route::get('admin_bill',[AdminController::class,'admin_bill']);
+Route::get('remove_order/{order_id}',[AdminController::class,'remove_order']);
+Route::get('bill_detail/{order_id}',[AdminController::class,'bill_detail']);
+
 
 

@@ -73,7 +73,7 @@
                 </div>
             </a>
             <ul>
-                <li><a href="{{url::to('admin_order')}}">Danh sách</a></li>
+                <li><a href="{{URL::to('admin_bill')}}">Danh sách</a></li>
             </ul>
         </li>
         <li class>

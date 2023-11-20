@@ -23,12 +23,12 @@ class PaymentController extends Controller
 {
     public function check_login()
     {
-       $admin_id = Session::get('admin_id');
-       if ($admin_id) {
-          return Redirect::to('dashboard');
-       } else {
-          return Redirect::to('admin')->send();
-       }
+        $admin_id = Session::get('admin_id');
+        if ($admin_id) {
+            return Redirect::to('dashboard');
+        } else {
+            return Redirect::to('admin')->send();
+        }
     }
     /**
      * Display a listing of the resource.
@@ -66,16 +66,16 @@ class PaymentController extends Controller
         $data['cus_note'] = $request->cus_note;
         $data->save();
         return back();
-
-        
     }
-    public function delete_address_user($ship_id){
-        ShippingModal::where('ship_id',$ship_id)->delete();
+    public function delete_address_user($ship_id)
+    {
+        ShippingModal::where('ship_id', $ship_id)->delete();
         return back();
     }
-    public function payment_bill(Request $request){
-        $list_cate = CategoryModel::where('cate_status','1')->get();
-        $list_brand = BrandModel::where('brand_status','1')->get();
+    public function payment_bill(Request $request)
+    {
+        $list_cate = CategoryModel::where('cate_status', '1')->get();
+        $list_brand = BrandModel::where('brand_status', '1')->get();
         // $data = array();
         // $data['pay_method'] = $request->ship;
         // $data['pay_status'] = 0;
@@ -85,11 +85,11 @@ class PaymentController extends Controller
         //insert_order
         // $order = array();
         $order = new OrderModal();
-        $order ['cus_id'] =Session::get('cus_id');
-        $order ['ship_id'] = Session::get('shipping_id');
-        $order ['pay_id'] = $data;
-        $order ['order_total'] = Cart::total();
-        $order ['order_status'] = 0;
+        $order['cus_id'] = Session::get('cus_id');
+        $order['ship_id'] = Session::get('shipping_id');
+        $order['pay_id'] = $data;
+        $order['order_total'] = Cart::total();
+        $order['order_status'] = 0;
         $order->save();
         $order_id = $order->id;
         // dd($order_id); 
@@ -98,56 +98,119 @@ class PaymentController extends Controller
 
         //insert order_detail
         $content =  Cart::content();
-        foreach($content as $val){
-        $order_detail = new OrderDetailModel();
-        $order_detail ['order_id']= $order_id;
-        $order_detail ['product_id']= $val->id;
-        $order_detail ['product_name']=$val->name;
-        $order_detail ['product_price']=  $val->price;
-        $order_detail ['product_quantity']= $val->qty;
-        $order_detail->save();
-       }
-       if( $data==1){
-          Cart::destroy(); //reset giỏ hàng
-          return view('layout_user.page_user.payment_product.ship_code',compact('list_cate','list_brand'));
-        //   return back();
-       }
-       else{
-        Cart::destroy(); //reset giỏ hàng
-        return redirect('/');
-       }
+        foreach ($content as $val) {
+            $order_detail = new OrderDetailModel();
+            $order_detail['order_id'] = $order_id;
+            $order_detail['product_id'] = $val->id;
+            $order_detail['product_name'] = $val->name;
+            $order_detail['product_price'] =  $val->price;
+            $order_detail['product_quantity'] = $val->qty;
+            $order_detail->save();
+        }
+        if ($data == 1) {
+            Cart::destroy(); //reset giỏ hàng
+            return view('layout_user.page_user.payment_product.ship_code', compact('list_cate', 'list_brand'));
+            //   return back();
+        } else {
+            Cart::destroy(); //reset giỏ hàng
+            return redirect('/');
+        }
     }
-    public function admin_payment(){
+    public function admin_payment()
+    {
         $payment = PaymentModel::all();
         // dd( $payment);
-        return view('layout_admin.pages_admin.admin_payment.list_payment',compact('payment'));
+        return view('layout_admin.pages_admin.admin_payment.list_payment', compact('payment'));
     }
-    public function delete_paymethod($pay_id){
-        PaymentModel::where('pay_id',$pay_id)->delete();
+    public function payment_vnpay(Request $request)
+    {
+        $data = $request->all();
+        $tatol_cart = ($data['total_vnpay']);
+        $parts = explode('.', $tatol_cart);
+        $result_total =intval(str_replace(',', '', $parts[0])) ;
+        // dd($result_total);
+        $code_cart = rand(00,9999);
+        // $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
+        $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/";
+        $vnp_Returnurl = "http://127.0.0.1:8000/payment";
+        $vnp_TmnCode = "NEOHV8Y9"; //Mã website tại VNPAY 
+        $vnp_HashSecret = "LJCMBDTNVTXNIDBMPHWICWSKCPFJDTDQ"; //Chuỗi bí mật
+
+        $vnp_TxnRef = $code_cart; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+        $vnp_OrderInfo = "Thanh toán đơn hàng test";
+        $vnp_OrderType = "billpayment";
+        $vnp_Amount =  $result_total*100;
+        $vnp_Locale = "vn";
+        $vnp_BankCode = "NCB";
+        $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
+        $inputData = array(
+            "vnp_Version" => "2.1.0",
+            "vnp_TmnCode" => $vnp_TmnCode,
+            "vnp_Amount" => $vnp_Amount,
+            "vnp_Command" => "pay",
+            "vnp_CreateDate" => date('YmdHis'),
+            "vnp_CurrCode" => "VND",
+            "vnp_IpAddr" => $vnp_IpAddr,
+            "vnp_Locale" => $vnp_Locale,
+            "vnp_OrderInfo" => $vnp_OrderInfo,
+            "vnp_OrderType" => $vnp_OrderType,
+            "vnp_ReturnUrl" => $vnp_Returnurl,
+            "vnp_TxnRef" => $vnp_TxnRef
+        );
+
+        if (isset($vnp_BankCode) && $vnp_BankCode != "") {
+            $inputData['vnp_BankCode'] = $vnp_BankCode;
+        }
+        if (isset($vnp_Bill_State) && $vnp_Bill_State != "") {
+            $inputData['vnp_Bill_State'] = $vnp_Bill_State;
+        }
+
+        //var_dump($inputData);
+        ksort($inputData);
+        $query = "";
+        $i = 0;
+        $hashdata = "";
+        foreach ($inputData as $key => $value) {
+            if ($i == 1) {
+                $hashdata .= '&' . urlencode($key) . "=" . urlencode($value);
+            } else {
+                $hashdata .= urlencode($key) . "=" . urlencode($value);
+                $i = 1;
+            }
+            $query .= urlencode($key) . "=" . urlencode($value) . '&';
+        }
+
+        $vnp_Url = $vnp_Url . "?" . $query;
+        if (isset($vnp_HashSecret)) {
+            $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret); //  
+            $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
+        }
+        $returnData = array(
+            'code' => '00', 'message' => 'success', 'data' => $vnp_Url
+        );
+        if (isset($_POST['redirect'])) {
+            header('Location: ' . $vnp_Url);
+            die();
+        } else {
+            echo json_encode($returnData);
+        }
+    }
+    public function delete_paymethod($pay_id)
+    {
+        PaymentModel::where('pay_id', $pay_id)->delete();
         return back();
     }
-    public function active_paymethod($pay_id){
-        PaymentModel::where('pay_id',$pay_id)->update(['pay_status'=>1]);
-         return Redirect()->back()->with('message','Cập nhật trạng thái thành công')->with('error','Cập nhật trạng thái không thành công !');
-     }
-     public function unactive_paymethod($pay_id){
-        PaymentModel::where('pay_id',$pay_id)->update(['pay_status'=>0]);
-         return Redirect()->back()->with('message','Cập nhật trạng thái thành công')->with('error','Cập nhật trạng thái không thành công !');
-     }
-     public function admin_order(Request $request){
-        $this->check_login();
-        $key = $request->search;
-          $list_order = DB::table('tbl_order')
-          ->join('tbl_customer','tbl_order.cus_id','=','tbl_customer.cus_id')
-          ->join('tbl_order_detail','tbl_order.order_id','=','tbl_order_detail.order_id')
-          ->join('tbl_payment','tbl_order.pay_id','=','tbl_payment.pay_id')
-          ->join('tbl_shipping','tbl_order.ship_id','=','tbl_shipping.ship_id')
-          ->select('tbl_order_detail.*','tbl_customer.cus_name','tbl_customer.cus_id','tbl_order.order_total','tbl_order.order_id','tbl_payment.pay_method','tbl_shipping.*')
-          ->orderBy('tbl_order.order_id','desc')
-          ->where('tbl_shipping.cus_name','like','%'.$key.'%')->paginate(10)->appends(['search'=>$key]);
-        //    dd($list_order);
-          return view('layout_admin.pages_admin.admin_orders.list_bill',compact('list_order'));  
-     }
+    public function active_paymethod($pay_id)
+    {
+        PaymentModel::where('pay_id', $pay_id)->update(['pay_status' => 1]);
+        return Redirect()->back()->with('message', 'Cập nhật trạng thái thành công')->with('error', 'Cập nhật trạng thái không thành công !');
+    }
+    public function unactive_paymethod($pay_id)
+    {
+        PaymentModel::where('pay_id', $pay_id)->update(['pay_status' => 0]);
+        return Redirect()->back()->with('message', 'Cập nhật trạng thái thành công')->with('error', 'Cập nhật trạng thái không thành công !');
+    }
+    
     /**
      * Display the specified resource.
      *
