@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImgProductController;
 use App\Http\Controllers\NewController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Models\CategoryModel;
 use Illuminate\Support\Facades\Route;
@@ -57,6 +58,7 @@ Route::get('/active_product_img/{img_pro_id}',[ImgProductController::class,'acti
 Route::get('/unactive_product_img/{img_pro_id}',[ImgProductController::class,'unactive_cate']);
 Route::get('/active_hot/{product_id}',[ProductController::class,'active_hot']);
 Route::get('/unactive_hot/{product_id}',[ProductController::class,'unactive_hot']);
+Route::post('search',[ProductController::class,'search']);
 Route::get('home/{product_id}',[HomeController::class,'show'])->name('home.show');
 //news
 Route::resource('news','App\Http\Controllers\NewController');
@@ -85,9 +87,16 @@ Route::get('login_acc',[AccountController::class,'login_acc']);
 Route::post('login_user',[AccountController::class,'login_user']);
 Route::get('checkout_user',[AccountController::class,'checkout_user']);
 Route::get('payment',[AccountController::class,'payment']);
+// Route::get('admin_bill',[AccountController::class,'admin_bill']);
 
 //payment
 Route::resource('payments','App\Http\Controllers\PaymentController');
-// Route::post('shipping_address','App\Http\Controllers\PaymentController');
+Route::get('delete_address_user/{ship_id}',[PaymentController::class,'delete_address_user']);
+Route::post('payment_bill',[PaymentController::class,'payment_bill']);
+Route::get('admin_payment',[PaymentController::class,'admin_payment']);
+Route::get('delete_paymethod/{pay_id}',[PaymentController::class,'delete_paymethod']);
+Route::get('active_paymethod/{pay_id}',[PaymentController::class,'active_paymethod']);
+Route::get('unactive_paymethod/{pay_id}',[PaymentController::class,'unactive_paymethod']);
+Route::get('admin_order',[PaymentController::class,'admin_order']);
 
 

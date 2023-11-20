@@ -39,43 +39,37 @@
                             <tr>
                                 <th scope="col">STT</th>
                                 <th scope="col">ID</th>
-                                <th scope="col">Tin tức</th>
-                                <th scope="col">Mô tả</th>
-                                {{-- <th scope="col">Nội dung</th> --}}
-                                <th scope="col">Ảnh</th>
+                                <th scope="col">Hình thức thanh toán</th>
                                 <th scope="col">Trạng thái</th>
                                 <th scope="col" colspan="2">Thao tác</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($list_new as $key=>$item)
+                            @foreach ($payment as $key=>$item)
                             <tr>
                                 <td>{{$key++}}</td>
-                                <td>{{$item->new_id}}</td>
-                                <td>{{$item->new_title}}</td>
-                                <td>{{$item->new_des}}</td>
-                                {{-- <td>{{$item->new_content}}</td> --}}
-                                <td><img src="{{asset($item->new_img)}}" style="width: 90px"></td>
+                                <td>{{$item->pay_id}}</td>
+                                <td>{{$item->pay_method}}</td>
                                 <td>
                                     <?php
                                     if ($item->new_status == 0) {
                                     ?>
-                                    <a href="{{ URL::to('active-new/' . $item->new_id) }}"
-                                        class="btn status_btn_st text-white">Ẩn</a>
+                                    <a href="{{ URL::to('active_paymethod/'.$item->pay_id) }}"
+                                        class=" btn  status_btn text-white">Hiển thị</a>
                                     <?php
                                     } else {
                                     ?>
-                                    <a href="{{ URL::to('unactive-new/' . $item->new_id) }}"
-                                        class="btn  status_btn text-white">Hiển Thị</a>
+                                    <a href="{{ URL::to('unactive_paymethod/'.$item->pay_id) }}"
+                                        class="btn status_btn_st text-white">Ẩn</a>
                                     <?php
                                     }
                                     ?>
                                 </td>
                                 <td>
                                     <div class="action_btns d-flex">
-                                        <a href="{{route('news.edit',$item->new_id)}}" class="action_btn mr_10"> <i
+                                        <a href="{{URL::to('payment_edit/'.$item->pay_id)}}" class="action_btn mr_10"> <i
                                                 class="far fa-edit"></i> </a>
-                                        <a href="{{URL::to('delete_new/'.$item->new_id)}}" class="action_btn"  onclick="return confirm('Bạn có muốn xóa danh mục này không?')"> <i class="fas fa-trash"></i>
+                                        <a href="{{URL::to('delete_paymethod/'.$item->pay_id)}}" class="action_btn"  onclick="return confirm('Bạn có muốn xóa danh mục này không?')"> <i class="fas fa-trash"></i>
                                         </a>
                                     </div>
                                 </td>
@@ -83,9 +77,9 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="data_Tables_paginate paging_simple_numbers mt-5">
-                        {{ $list_new->links('pagination::bootstrap-4') }}
-                    </div>
+                    {{-- <div class="data_Tables_paginate paging_simple_numbers mt-5">
+                        {{ $payment->links('pagination::bootstrap-4') }}
+                    </div> --}}
                 </div>
             </div>
         </div>

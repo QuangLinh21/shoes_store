@@ -2,8 +2,7 @@
     <div class="container">
         <div class="product-area pb--50">
             <div class="section-title-wrapper">
-                <span class="title-highlighter highlighter-secondary"><i
-                        class="far fa-shopping-basket"></i>The Categories</span>
+                <span class="title-highlighter highlighter-secondary">Categories</span>
                 <h2 class="title">Danh mục</h2>
             </div>
             <div

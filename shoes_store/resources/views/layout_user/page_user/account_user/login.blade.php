@@ -17,7 +17,7 @@
                             <input type="password" class="form-control" name="cus_password" required placeholder="123456789">
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="axil-btn btn-bg-primary submit-btn">Đăng ký</button>
+                            <button type="submit" class="axil-btn btn-bg-primary submit-btn">Đăng nhập</button>
                         </div>
                     </form>
                 </div>

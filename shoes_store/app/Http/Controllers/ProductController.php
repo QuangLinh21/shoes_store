@@ -99,6 +99,13 @@ class ProductController extends Controller
         }
 
     }
+    public function search(Request $request){
+        $key_word = $request->keyword;
+        $list_cate = CategoryModel::where('cate_status','1')->get();
+        $list_brand = BrandModel::where('brand_status','1')->get();
+        $result = ProductModel::where('product_name','like','%'.$key_word.'%')->paginate(6);
+        return view('layout_user.common_page.search_result',compact('list_cate','list_brand','result'));
+    }
 
     /**
      * Display the specified resource.

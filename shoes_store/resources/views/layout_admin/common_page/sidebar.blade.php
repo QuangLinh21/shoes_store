@@ -63,6 +63,33 @@
                 <li><a href="{{URL::to('news')}}">Danh sách</a></li>
             </ul>
         </li>
+        <li class>
+            <a class="has-arrow" href="#" aria-expanded="false">
+                <div class="nav_icon_small">
+                    <img src="{{asset('backend/img/menu-icon/20.svg')}}" alt>
+                </div>
+                <div class="nav_title">
+                    <span>Hóa đơn</span>
+                </div>
+            </a>
+            <ul>
+                <li><a href="{{url::to('admin_order')}}">Danh sách</a></li>
+            </ul>
+        </li>
+        <li class>
+            <a class="has-arrow" href="#" aria-expanded="false">
+                <div class="nav_icon_small">
+                    <img src="{{asset('backend/img/menu-icon/20.svg')}}" alt>
+                </div>
+                <div class="nav_title">
+                    <span>Hình thức thanh toán</span>
+                </div>
+            </a>
+            <ul>
+                <li><a href="{{url::to('payment_create')}}">Thêm mới</a></li>
+                <li><a href="{{url::to('admin_payment')}}">Danh sách</a></li>
+            </ul>
+        </li>
        
     </ul>
 </nav>

@@ -8,8 +8,7 @@
         <div class="container">
             <div class="product-area pb--50">
                 <div class="section-title-wrapper">
-                    <span class="title-highlighter highlighter-primary"> <i class="far fa-shopping-basket"></i>This
-                        Month</span>
+                    <span class="title-highlighter highlighter-primary">New Products</span>
                     <h2 class="title">Sản phẩm mới</h2>
                 </div>
                 <div
@@ -37,8 +36,7 @@
                                         <h5 class="title_product"><a href="javascript:void(0)"
                                             data-bs-toggle="modal"
                                             id="show-product"
-                                            data-url="{{route('home.show',$item->product_id) }}">{{ $item->product_name }}<span
-                                                    class="verified-icon"><i class="fas fa-badge-check"></i></span></a></h5>
+                                            data-url="{{route('home.show',$item->product_id) }}">{{ $item->product_name }}</a></h5>
                                         <div class="product-hover-action">
                                             <ul class="cart-action">
                                                 <li class="select-option"><a href="javascript:void(0)"
@@ -66,8 +64,8 @@
                 <div class="axil-isotope-wrapper">
                     <div class="product-isotope-heading">
                         <div class="section-title-wrapper">
-                            <span class="title-highlighter highlighter-primary"><i class="far fa-shopping-basket"></i> Our
-                                Products</span>
+                            <span class="title-highlighter highlighter-primary">
+                                 All Products</span>
                             <h2 class="title">Tất cả sản phẩm</h2>
                         </div>
                     </div>
@@ -99,8 +97,7 @@
                                                 href="javascript:void(0)"
                                                 data-bs-toggle="modal"
                                                 id="show-product"
-                                                data-url="{{route('home.show',$item->product_id) }}">{{ $item->product_name }} <span
-                                                        class="verified-icon"><i class="fas fa-badge-check"></i></span></a>
+                                                data-url="{{route('home.show',$item->product_id) }}">{{ $item->product_name }} </a>
                                             </h5>
                                             <div class="product-price-variant">
                                                 <span
@@ -124,17 +121,17 @@
     <div class="video-banner-area">
         <div class="container">
             <div class="product-area pb--80">
-                <div class="section-title-wrapper section-title-center">
-                    <span class="title-highlighter highlighter-primary"><i class="far fa-film-alt"></i>
+                <div class="section-title-wrapper section-title-center pt-5">
+                    <span class="title-highlighter highlighter-primary">
                         Video</span>
-                    <h2 class="title">Meet The Greater</h2>
+                    <h2 class="title">Giới thiệu về chúng tôi</h2>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="video-banner">
                             <img src="{{ asset('frontend/assets/images/bg/bg-image-7.jpg') }}" alt="Images">
                             <div class="popup-video-icon">
-                                <a href="https://www.youtube.com/watch?v=FkUn86bH34M" class="popup-youtube video-icon">
+                                <a href="https://www.youtube.com/watch?v=Bv-3Wx2UdbI" class="popup-youtube video-icon">
                                     <i class="fas fa-play"></i>
                                 </a>
                             </div>

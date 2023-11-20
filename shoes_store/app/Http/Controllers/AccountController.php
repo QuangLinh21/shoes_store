@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\AccountModel;
 use App\Models\BrandModel;
 use App\Models\CategoryModel;
+use App\Models\ShippingModal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 session_start();
@@ -62,6 +64,7 @@ class AccountController extends Controller
     if ($result) {
         Session::put('cus_name', $result->cus_name);
         Session::put('cus_id', $result->cus_id  );
+      
         // dd(Session::get('cus_id'));
         return Redirect::to('/');
     } else {
@@ -72,7 +75,12 @@ class AccountController extends Controller
    public function payment(){
         $list_cate = CategoryModel::where('cate_status','1')->get();
         $list_brand = BrandModel::where('brand_status','1')->get();
-        return view('layout_user.page_user.payment_product.payment',compact('list_cate','list_brand'));
+        $shipping = ShippingModal::where('cus_id', Session::get('cus_id'))->orderBy('ship_id','desc')->get();
+        $shipping_id = DB::table('tbl_shipping')->where('cus_id', Session::get('cus_id'))->orderBy('ship_id','desc')->first();
+        // dd( $shipping_id);
+        Session::put('shipping_id',$shipping_id->ship_id);
+        return view('layout_user.page_user.payment_product.payment',compact('list_cate','list_brand','shipping_id','shipping'));
+        
    }
    public function checkout_user(){
     Session::put('cus_name',null);

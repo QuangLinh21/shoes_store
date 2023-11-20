@@ -9,7 +9,7 @@
                         <div class="content-blog sticky mt--60">
                             <div class="inner">
                                 <div class="content">
-                                    <h4 class="title"><a href="blog-details.html">{{ $item->new_title }}</a></h4>
+                                    <h4 class="title"><a href="{{route('news.show',$item->new_id)}}">{{ $item->new_title }}</a></h4>
                                     <div class="axil-post-meta">
                                         <div class="post-author-avatar">
                                             <img src="{{ asset($item->new_img) }}" alt="{{ $item->new_title }}">
