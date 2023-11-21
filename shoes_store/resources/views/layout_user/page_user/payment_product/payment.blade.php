@@ -155,16 +155,16 @@
                                         </div>
                                     @endforeach
                                 </div>
-                                <div class="single-payment">
+                                <div class="single-payment d-none">
                                     <h3 class="mb-3">Hình thức thanh toán</h3>
                                     <div class="">
                                         <input type="radio" id="ship_code" name="ship" value="1" checked>
                                         <label for="ship_code">Ship code</label>
                                     </div>
-                                    <div>
+                                    {{-- <div>
                                         <input type="radio" id="pay" name="ship" value="2">
                                         <label for="pay">Thanh toán VNPAY</label>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                          

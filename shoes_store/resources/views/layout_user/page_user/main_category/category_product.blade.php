@@ -10,18 +10,12 @@
                             <ul class="axil-breadcrumb">
                                 <li class="axil-breadcrumb-item"><a href="index.html">Home</a></li>
                                 <li class="separator"></li>
-                                <li class="axil-breadcrumb-item active" aria-current="page">My Account</li>
+                                <li class="axil-breadcrumb-item active" aria-current="page">Category</li>
                             </ul>
-                            <h1 class="title">Explore All Products</h1>
+                            <h3 class="title"> DANH MỤC SẢN PHẨM</h3>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-4">
-                        <div class="inner">
-                            <div class="bradcrumb-thumb">
-                                <img src="assets/images/product/product-45.png" alt="Image">
-                            </div>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
         </div>

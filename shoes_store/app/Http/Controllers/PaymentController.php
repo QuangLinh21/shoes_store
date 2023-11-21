@@ -130,8 +130,8 @@ class PaymentController extends Controller
         $result_total =intval(str_replace(',', '', $parts[0])) ;
         // dd($result_total);
         $code_cart = rand(00,9999);
-        // $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/";
+         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
+        //$vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/";
         $vnp_Returnurl = "http://127.0.0.1:8000/payment";
         $vnp_TmnCode = "NEOHV8Y9"; //Mã website tại VNPAY 
         $vnp_HashSecret = "LJCMBDTNVTXNIDBMPHWICWSKCPFJDTDQ"; //Chuỗi bí mật

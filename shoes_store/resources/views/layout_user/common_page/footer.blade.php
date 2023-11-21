@@ -5,17 +5,15 @@
             <div class="row">
                 <!-- Start Single Widget  -->
                 <div class="col-md-4 col-sm-12">
-                    <div class="axil-footer-widget">
+                    <div class="axil-footer-widget fix-footer">
                         <div class="logo mb--30">
-                            <a href="index.html">
-                                <img class="light-logo" src="assets/images/logo/logo-light.png"
+                            <a href="{{URL::to('/')}}">
+                                <img class="light-logo logo_footer" src="{{asset('frontend/assets/images/logo_new.png')}}"
                                     alt="Logo Images">
                             </a>
                         </div>
-                        <div class="inner">
-                            <p>685 Market Street <br>
-                                Las Vegas, LA 95820, <br>
-                                United States.
+                        <div class="inner info_footer">
+                            <p>Số 1 Trần Thủ Độ <br> Hoàng Liệt, Hoàng Mai, Hà nội
                             </p>
                             <div class="social-share">
                                 <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -31,10 +29,10 @@
                 <!-- Start Single Widget  -->
                 <div class="col-md-4 col-sm-4">
                     <div class="axil-footer-widget">
-                        <h5 class="widget-title">Các trang liên quan</h5>
+                        <h5 class="widget-title">Về chúng tôi</h5>
                         <div class="inner">
                             <ul>
-                                <li><a href="{{url::to('')}}">Trang chủ</a></li>
+                                <li><a href="{{url::to('/')}}">Trang chủ</a></li>
                                 <li><a href="about-us.html">Thương hiệu</a></li>
                                 <li><a href="blog.html">Danh mục</a></li>
                                 <li><a href="shop-sidebar.html">Tin tức</a></li>

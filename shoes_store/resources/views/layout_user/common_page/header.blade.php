@@ -45,11 +45,11 @@
         <div class="container">
             <div class="header-navbar">
                 <div class="header-brand">
-                    <a href="index.html" class="logo logo-dark">
-                        <img src="assets/images/logo/logo.png" alt="Site Logo">
+                    <a href="{{URL::to('/')}}" class="logo logo-dark">
+                        <img src="{{asset('frontend/assets/images/logo_new.png')}}" class="img_logo" alt="Site Logo">
                     </a>
-                    <a href="index.html" class="logo logo-light">
-                        <img src="assets/images/logo/logo-light.png" alt="Site Logo">
+                    <a href="{{URL::to('/')}}" class="logo logo-light">
+                        <img src="{{asset('frontend/assets/images/logo_new.png')}}" alt="Site Logo">
                     </a>
                 </div>
                 <div class="header-main-nav">
@@ -58,7 +58,7 @@
                         <button class="mobile-close-btn mobile-nav-toggler"><i class="fas fa-times"></i></button>
                         <div class="mobile-nav-brand">
                             <a href="index.html" class="logo">
-                                <img src="assets/images/logo/logo.png" alt="Site Logo">
+                                <img src="{{asset('frontend/assets/images/logo_new.png')}}" alt="Site Logo">
                             </a>
                         </div>
                         <ul class="mainmenu">

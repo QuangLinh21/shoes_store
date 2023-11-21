@@ -2472,7 +2472,7 @@ input[type="submit"]:hover {
 }
 .axil-breadcrumb-area {
     position: relative;
-    background-color: #f8f8f8;
+    background: linear-gradient(181deg, rgba(255, 255, 255, 0.00) 7.93%, rgba(255, 107, 0, 0.07) 33.33%, rgba(255, 0, 122, 0.07) 60.71%, rgba(255, 255, 255, 0.23) 98.9%);
     padding: 40px 0 45px;
 }
 .axil-breadcrumb-area .inner .title {
@@ -12224,7 +12224,7 @@ body.open .closeMask {
     animation: prevNavSlide 400ms;
 }
 .axil-signin-banner {
-    min-height: 900px;
+    min-height: 660px;
     height: 100vh;
     padding: 200px 50px 0 100px;
 }
@@ -13233,8 +13233,8 @@ body.open .closeMask {
     left: 0;
 }
 .axil-footer-widget .logo img {
-    height: 35px;
-    width: auto;
+    /* height: 35px;
+    width: auto; */
 }
 .axil-footer-widget .support-list-item {
     margin-bottom: 0;
@@ -13324,6 +13324,8 @@ body.open .closeMask {
 }
 .copyright-default.separator-top {
     position: relative;
+    background-color: #292930 !important;
+    color: #fff !important;
 }
 .copyright-default.separator-top::after {
     position: absolute;
@@ -13373,10 +13375,11 @@ body.open .closeMask {
     display: none;
 }
 .footer-dark {
-    background-color: var(--color-heading);
+    /* background-color: var(--color-heading); */
+    background: var(--hong, linear-gradient(135deg, rgba(255, 255, 255, 0.00) 23.22%, rgba(255, 107, 0, 0.07) 38.09%, rgba(255, 0, 122, 0.07) 54.12%, rgba(0, 185, 118, 0.23) 76.48%));
 }
 .footer-dark .axil-footer-widget p {
-    color: #acacac;
+    color: #000;
 }
 .footer-dark .social-share a {
     color: #acacac;
@@ -13385,10 +13388,10 @@ body.open .closeMask {
     color: var(--color-white);
 }
 .footer-dark .axil-footer-widget .widget-title {
-    color: #c8c8c8;
+    color: #000;
 }
 .footer-dark .axil-footer-widget .inner ul li a {
-    color: #acacac;
+    color: #000;
 }
 .footer-dark .axil-footer-widget .inner ul li a:after {
     background-color: #acacac;
@@ -13397,7 +13400,7 @@ body.open .closeMask {
     background-color: #454545;
 }
 .footer-dark .copyright-default .quick-link li {
-    color: #acacac;
+    color: #000;
 }
 .footer-dark .copyright-default .quick-link li:after {
     background: #acacac;
@@ -17785,4 +17788,20 @@ body.open .closeMask {
     -webkit-box-orient: vertical;
     overflow: hidden;
     height: 50px;
+}
+.img_logo{
+    width: 135px;
+}
+.fix-footer{
+    position: relative;
+}
+.logo_footer{
+    position: absolute;
+    width: 300px;
+    top: -90px;
+    
+}
+.info_footer{
+    position: absolute;
+    top: 90px;
 }

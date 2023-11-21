@@ -2,7 +2,13 @@
 @section('content')
 <div >
     <div class="row">
-        <div class="col-lg-6 offset-xl-2">
+        
+        <div class="col-xl-6 col-lg-6">
+            <div class="axil-signin-banner bg_image bg_image--10">
+                {{-- <h3 class="title">We Offer the Best Products</h3> --}}
+            </div>
+        </div>
+        <div class="col-lg-4 offset-xl-1">
             <div class="axil-signin-form-wrap">
                 <div class="axil-signin-form">
                     <h3 class="title mb-5">Đăng ký tài khoản</h3>
@@ -25,11 +31,6 @@
                         </div>
                     </form>
                 </div>
-            </div>
-        </div>
-        <div class="col-xl-4 col-lg-6">
-            <div class="axil-signin-banner bg_image bg_image--10">
-                <h3 class="title">We Offer the Best Products</h3>
             </div>
         </div>
        
