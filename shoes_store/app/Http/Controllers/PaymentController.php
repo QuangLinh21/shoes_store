@@ -7,6 +7,7 @@ use App\Models\CategoryModel;
 use App\Models\OrderDetailModel;
 use App\Models\OrderModal;
 use App\Models\PaymentModel;
+use App\Models\ProductModel;
 use App\Models\ShippingModal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -93,9 +94,7 @@ class PaymentController extends Controller
         $order->save();
         $order_id = $order->id;
         // dd($order_id); 
-
         //$order_id = DB::table('tbl_order')->insertGetId($order);
-
         //insert order_detail
         $content =  Cart::content();
         foreach ($content as $val) {
@@ -106,7 +105,14 @@ class PaymentController extends Controller
             $order_detail['product_price'] =  $val->price;
             $order_detail['product_quantity'] = $val->qty;
             $order_detail->save();
+            
+            $update_product_id = $val->id;
+            $update_product_qty = $val->qty;
+            $update_product = DB::table('tbl_warehouse')->where('product_id', $update_product_id)
+                ->update(['quantity' => DB::raw('quantity - ' . $update_product_qty)]);
         }
+       
+
         if ($data == 1) {
             Cart::destroy(); //reset giỏ hàng
             return view('layout_user.page_user.payment_product.ship_code', compact('list_cate', 'list_brand'));

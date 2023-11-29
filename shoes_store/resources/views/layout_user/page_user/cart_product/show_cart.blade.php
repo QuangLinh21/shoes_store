@@ -120,7 +120,7 @@
                             <a href="{{ URL::to('login_acc') }}" class="axil-btn btn-bg-primary checkout-btn">Login</a>
                             <?php
                         } else {?>
-                            <a href="{{URL::to('payment') }}" class="axil-btn btn-bg-primary checkout-btn">Thanh
+                            <a href="{{ URL::to('payment') }}" class="axil-btn btn-bg-primary checkout-btn">Thanh
                                 toán</a>
                             <?php
                             }

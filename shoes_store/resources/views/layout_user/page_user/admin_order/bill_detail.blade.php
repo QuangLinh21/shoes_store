@@ -5,7 +5,7 @@
             <div class="white_card_header">
                 <div class="box_header m-0">
                     <div class="main-title">
-                        <h3 class="m-0">Quản lý sản phẩm</h3>
+                        <h3 class="m-0">Hóa đơn </h3>
                     </div>
                     <form>
                         @csrf

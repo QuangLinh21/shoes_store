@@ -28,7 +28,42 @@ class AdminController extends Controller
     public function index()
     {
         $this->check_login();
-        return view('dashboard');
+            $totalRevenue = DB::table('tbl_order')
+            ->select(DB::raw('SUM(CAST(REPLACE(order_total, ",", "") AS DECIMAL(10, 2))) AS tong_doanh_thu'))
+            ->whereDate('created_at', now()->toDateString())
+            ->get();
+        // Lấy giá trị tổng doanh thu từ kết quả truy vấn
+        $tongDoanhThu = $totalRevenue[0]->tong_doanh_thu;
+        $total_month = DB::table('tbl_order')
+        ->select(DB::raw('SUM(CAST(REPLACE(order_total, ",", "") AS DECIMAL(10,2))) AS tong_doanh_thu'))
+        ->whereYear('created_at', now()->year)
+        ->whereMonth('created_at', now()->month)
+        ->get();
+       
+    // Lấy giá trị tổng doanh thu từ kết quả truy vấn
+    $month_current = $total_month[0]->tong_doanh_thu;
+    $total_year = DB::table('tbl_order')
+    ->select(DB::raw('SUM(CAST(REPLACE(order_total, ",", "") AS DECIMAL(10,2))) AS tong_doanh_thu'))
+    ->whereYear('created_at', now()->year)
+    ->get();
+    $year_current = $total_year[0]->tong_doanh_thu;
+
+    //top 3 sản phẩm bán chạy nhất
+    $topProducts = DB::table('tbl_order_detail')
+        ->select('product_id', 'product_name', DB::raw('SUM(product_quantity) as total_quantity'))
+        ->whereMonth('created_at', now()->month)
+        ->groupBy('product_id', 'product_name')
+        ->orderByDesc('total_quantity')
+        ->limit(3)
+        ->get();
+    $bottomProducts = DB::table('tbl_order_detail')
+        ->select('product_id', 'product_name', DB::raw('SUM(product_quantity) as total_quantity'))
+        ->whereMonth('created_at', now()->month)
+        ->groupBy('product_id', 'product_name')
+        ->orderBy('total_quantity','asc')
+        ->limit(3)
+        ->get();
+    return view('layout_user.page_user.admin_order.statistical',compact('tongDoanhThu','month_current','year_current','topProducts','bottomProducts'));
     }
 
     /**
@@ -39,6 +74,25 @@ class AdminController extends Controller
     public function create()
     {
         //
+    }
+    public function order_total(){
+        $result_day = DB::table('tbl_order')
+        ->select(DB::raw('DATE(updated_at) AS ngay'), DB::raw('SUM(CAST(REPLACE(order_total, ",", "") AS DECIMAL(10,2))) AS tong_doanh_thu'))
+        ->groupBy('ngay')
+        ->orderBy('order_id','desc')
+        ->get();
+    // dd($result_day);
+    // $total = OrderModel::select('DATE')
+    $result_month = DB::table('tbl_order')
+        ->select(
+            DB::raw('MONTH(created_at) AS thang'),
+            DB::raw('YEAR(created_at) AS nam'),
+            DB::raw('SUM(CAST(REPLACE(order_total, ",", "") AS DECIMAL(10,2))) AS doanhthu_thang')
+        )
+        ->groupBy('thang', 'nam')
+        // ->orderBy('nam', 'thang')
+        ->get();
+        return view('layout_user.page_user.admin_order.total_order',compact('result_day','result_month'));
     }
 
     /**
@@ -100,9 +154,10 @@ class AdminController extends Controller
         return view('layout_admin.common_page.login_admin');
     }
     
-    public function admin_login(AdminLoginRequest $request){
+    public function admin_login(Request $request){
         $username = $request->username;
         $password = $request->password;
+        // dd( $username,$password);
         $result = DB::table('tbl_admin')->where('admin_email',$username)->where('admin_password',$password)->first();
         if($result){
             Session::put('admin_name', $result->admin_name);

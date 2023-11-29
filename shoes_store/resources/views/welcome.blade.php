@@ -82,8 +82,15 @@
                     $('#product_price').html(formatPrice(data.product.product_price) + ' VNĐ');
                     $('#product_des').html(data.product.product_des);
                     $('#product_id').val(data.product.product_id);
-                });
-            });
+                     // Kiểm tra nếu có ít nhất một bản ghi
+                    if (data.product_quantity.length > 0) {
+                        $('#qty_product_kho').text(data.product_quantity[0].quantity);
+                    } else {
+                        $('#qty_product_kho').text('N/A');
+                    }
+
+                        });
+                    });
         });
     </script>
      <script>

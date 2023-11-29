@@ -6,6 +6,7 @@ use App\Models\BrandModel;
 use App\Models\CategoryModel;
 use App\Models\ImageProductModel;
 use App\Models\ProductModel;
+use App\Models\WarehouseModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -92,6 +93,12 @@ class ProductController extends Controller
         $product['product_hot'] = 0;
         $product['status'] = $request->status;
         $product->save();
+        $qroduct_quantity = new WarehouseModel();
+        $qroduct_quantity['product_id'] = $product->product_id;
+        $qroduct_quantity['quantity'] = $request->quantity;
+        $qroduct_quantity['status'] = 0;
+        $qroduct_quantity->save();
+
         if ($product) {
             return redirect()->back()->with('message', 'Thêm mới thành công');
         } else {
@@ -203,5 +210,50 @@ class ProductController extends Controller
     {
         ProductModel::where('product_id', $product_id)->update(['product_hot' => 0]);
         return Redirect()->back()->with('message', 'Cập nhật trạng thái thành công')->with('error', 'Cập nhật trạng thái không thành công !');
+    }
+
+    public function quantity_product(Request $request){
+        $this->check_login();
+        $key = $request->search;
+        $quantity = DB::table('tbl_product')
+        ->join('tbl_warehouse','tbl_product.product_id','=','tbl_warehouse.product_id')
+        ->select('tbl_warehouse.*','tbl_product.product_name')
+        ->where('tbl_product.product_name','like','%'.$key.'%')->paginate(20)->appends(['search'=>$key]);
+       // $quantity = WarehouseModel::where('product_id','like','%'.$key.'%')->paginate(20)->appends(['search'=>$key]);
+        return view('layout_admin.pages_admin.admin_warehouse.quantity_product',compact('quantity'));
+    }
+    public function add_quantity(){
+        $product = ProductModel::get();
+        return view('layout_admin.pages_admin.admin_warehouse.add_quantity',compact('product'));
+    }
+    public function plus_product($kho_id){
+        $product = DB::table('tbl_product')
+        ->join('tbl_warehouse','tbl_product.product_id','=','tbl_warehouse.product_id')
+        ->select('tbl_warehouse.*','tbl_product.product_name')
+        ->where('kho_id',$kho_id)->first();
+        // dd($product);
+        return view('layout_admin.pages_admin.admin_warehouse.add_quantity',compact('product'));
+    }
+    public function plus_kho_product(Request $request,$kho_id){
+       try {
+        $data_qty = $request->quantity;
+        $update_product = DB::table('tbl_warehouse')->where('kho_id', $kho_id)
+        ->update(['quantity' => DB::raw('quantity + ' . $data_qty)]);
+        return back()->with('message','Thêm mới thành công');
+       } catch (\Throwable $th) {
+        return back()->with('error','Thêm mới không thành công'.$th);
+       }
+    }
+    public function update_kho_product(Request $request){
+       try {
+        $data = new WarehouseModel();
+        $data['product_id']=$request->product_id;
+        $data['quantity']=$request->quantity;
+        $data['status'] = 0;
+        $data->save();
+        return back()->with('message','Thêm mới thành công');
+       } catch (\Throwable $th) {
+        return back()->with('error','Thêm mới không thành công'.$th);
+       }
     }
 }

@@ -8,6 +8,7 @@ use App\Models\ContactModal;
 use App\Models\ImageProductModel;
 use App\Models\NewModel;
 use App\Models\ProductModel;
+use App\Models\WarehouseModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -88,11 +89,13 @@ class HomeController extends Controller
         // ->get();
     public function show($product_id)
     {
-        $img_product = ImageProductModel::where('product_id',$product_id)->get();
+        // $img_product = ImageProductModel::where('product_id',$product_id)->get();
         $product = ProductModel::find($product_id);
+        $product_quantity = WarehouseModel::where('product_id',$product_id)->get();
         $data = [
             'product' => $product,
-            'img_product' => $img_product,
+            // 'img_product' => $img_product,
+            'product_quantity'=>$product_quantity
         ];
         return response()->json($data);
     }

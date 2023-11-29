@@ -30,10 +30,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[HomeController::class,'index']);
 Route::get('logout_admin',[AdminController::class,'logout_admin']);
 Route::post('admin_login',[AdminController::class,'admin_login']);
-
-
-
-
 Route::resource('dashboard','App\Http\Controllers\AdminController');
 Route::get('admin',[AdminController::class,'admin']);
 
@@ -60,6 +56,12 @@ Route::get('/active_hot/{product_id}',[ProductController::class,'active_hot']);
 Route::get('/unactive_hot/{product_id}',[ProductController::class,'unactive_hot']);
 Route::post('search',[ProductController::class,'search']);
 Route::get('home/{product_id}',[HomeController::class,'show'])->name('home.show');
+//kho hàng
+Route::get('quantity_product',[ProductController::class,'quantity_product']);
+Route::get('add_quantity',[ProductController::class,'add_quantity']);
+Route::post('update_kho_product',[ProductController::class,'update_kho_product']);
+Route::get('plus_product/{kho_id}',[ProductController::class,'plus_product']);
+Route::post('plus_kho_product/{kho_id}',[ProductController::class,'plus_kho_product']);
 //news
 Route::resource('news','App\Http\Controllers\NewController');
 Route::get('/active-new/{new_id}',[NewController::class,'active_cate']);
@@ -102,5 +104,6 @@ Route::get('admin_bill',[AdminController::class,'admin_bill']);
 Route::get('remove_order/{order_id}',[AdminController::class,'remove_order']);
 Route::get('bill_detail/{order_id}',[AdminController::class,'bill_detail']);
 
-
+//
+Route::get('order_total',[AdminController::class,'order_total']);
 

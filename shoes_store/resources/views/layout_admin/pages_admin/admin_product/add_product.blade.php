@@ -50,6 +50,10 @@
                     <input type="file" class="form-control" required name="img_main2" >
                 </div>
                 <div class="mb-3">
+                    <label for="namecategory" class="form-label">Số lượng sản phẩm</label>
+                    <input type="number" class="form-control" required name="quantity" >
+                </div>
+                <div class="mb-3">
                     <label for="namecategory" class="form-label">Trạng thái</label>
                     <select name="status" required class="form-select">
                         <option value="1">Hiện</option>

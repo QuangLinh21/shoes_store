@@ -2346,6 +2346,21 @@ span > .bg-secondary {
     min-width: 70px;
     text-align: center;
 }
+.status_btn_it{
+    display: inline-block;
+    padding: 2px 15px;
+    font-size: 11px;
+    font-weight: 300;
+    color: #fff !important;
+    background: red;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    text-transform: capitalize;
+    white-space: nowrap;
+    min-width: 70px;
+    text-align: center;
+}
 .status_btn.yellow_btn {
     background: #ffba00;
 }
@@ -3262,8 +3277,8 @@ table.dataTable {
 .sidebar .logo {
     margin: 0;
     background: #f3f6f9;
-    padding: 24px;
-    margin-bottom: 20px;
+    /* padding: 24px;
+    margin-bottom: 20px; */
 }
 .sidebar .logo .large_logo img {
     width: 100%;
@@ -10489,3 +10504,30 @@ table.lms_table_active3.dataTable thead .sorting_desc::after {
     align-items: center;
     border-top: 2px solid black;
 }
+.container_total{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30px;
+}
+.container_total .dt_ngay{
+    text-align: center;
+}
+.container_total .dt_ngay h4{
+    font-weight: bold;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 55px 20px;
+}
+.container_total .dt_ngay h5{
+    font-weight: 600;
+   
+}
+.container_total .dt_ngay:first-child h4{
+    border: 10px solid #EEB7FF;
+}
+.container_total .dt_ngay:last-child h4{
+    border: 10px solid #63D3FF;
+}
+ .container_total .dt_thang h4{
+    border: 10px solid #FFC696;
+ }

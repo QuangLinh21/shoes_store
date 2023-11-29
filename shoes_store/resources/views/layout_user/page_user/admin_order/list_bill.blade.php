@@ -48,6 +48,7 @@
                                 <th scope="col">Địa chỉ</th>
                                 <th scope="col">Số điện thoại</th>
                                 <th scope="col">Ghi chú</th>
+                                <th scope="col">Trạng thái</th>
                                 <th scope="col">Chi tiết đơn hàng</th>
                                 <th colspan="2">Thao tác</th>
                             </tr>
@@ -65,6 +66,7 @@
                                     <td class="nowrap">{{ $item->cus_address}}</td>
                                     <td class="nowrap">{{ $item->cus_phone}}</td>
                                     <td class="nowrap">{{ $item->cus_note}}</td>
+                                    <td class="nowrap"><a href="{{URL::to('order_status')}}"></a></td>
                                     <td class="nowrap"><a href="{{URL::to('bill_detail/'.$item->order_id)}}" style="color: red;">Chi tiết hóa đơn</a></td>
                                     <td><a href=""><i class="fa-solid fa-gear"></i></a></td>
                                     <td> <a href="{{URL::to('remove_order/'.$item->order_id)}}"

@@ -1,7 +1,7 @@
 <nav class="sidebar">
     <div class="logo d-flex justify-content-between">
-        <a class="large_logo" href="index-2.html"><img src="img/logo.png" alt></a>
-        <a class="small_logo" href="index-2.html"><img src="img/mini_logo.png" alt></a>
+        <a class="large_logo" href="{{URL::to('dashboard')}}"><img src="{{asset('frontend/assets/images/logo_new.png')}}" alt></a>
+        <a class="small_logo" href="{{URL::to('dashboard')}}"><img src="{{asset('frontend/assets/images/logo_new.png')}}" alt></a>
         <div class="sidebar_close_icon d-lg-none">
             <i class="ti-close"></i>
         </div>
@@ -52,6 +52,20 @@
         <li class>
             <a class="has-arrow" href="#" aria-expanded="false">
                 <div class="nav_icon_small">
+                    <img src="{{asset('backend/img/menu-icon/3.svg')}}" alt>
+                </div>
+                <div class="nav_title">
+                    <span>Kho sản phẩm</span>
+                </div>
+            </a>
+            <ul>
+                {{-- <li><a href="{{URL::to('add_quantity')}}">Thêm mới</a></li> --}}
+                <li><a href="{{URL::to('quantity_product')}}">Danh sách</a></li>
+            </ul>
+        </li>
+        <li class>
+            <a class="has-arrow" href="#" aria-expanded="false">
+                <div class="nav_icon_small">
                     <img src="{{asset('backend/img/menu-icon/20.svg')}}" alt>
                 </div>
                 <div class="nav_title">
@@ -74,6 +88,19 @@
             </a>
             <ul>
                 <li><a href="{{URL::to('admin_bill')}}">Danh sách</a></li>
+            </ul>
+        </li>
+        <li class>
+            <a class="has-arrow" href="#" aria-expanded="false">
+                <div class="nav_icon_small">
+                    <img src="{{asset('backend/img/menu-icon/20.svg')}}" alt>
+                </div>
+                <div class="nav_title">
+                    <span>Thống kê</span>
+                </div>
+            </a>
+            <ul>
+                <li><a href="{{URL::to('order_total')}}">Danh sách</a></li>
             </ul>
         </li>
         <li class>
