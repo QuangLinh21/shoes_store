@@ -77,14 +77,7 @@ class PaymentController extends Controller
     {
         $list_cate = CategoryModel::where('cate_status', '1')->get();
         $list_brand = BrandModel::where('brand_status', '1')->get();
-        // $data = array();
-        // $data['pay_method'] = $request->ship;
-        // $data['pay_status'] = 0;
-        // $payment_id = DB::table('tbl_payment')->insertGetId($data);
         $data = $request->ship;
-
-        //insert_order
-        // $order = array();
         $order = new OrderModal();
         $order['cus_id'] = Session::get('cus_id');
         $order['ship_id'] = Session::get('shipping_id');
@@ -103,6 +96,7 @@ class PaymentController extends Controller
             $order_detail['product_id'] = $val->id;
             $order_detail['product_name'] = $val->name;
             $order_detail['product_price'] =  $val->price;
+            $order_detail['size'] = $val->options->size;
             $order_detail['product_quantity'] = $val->qty;
             $order_detail->save();
             
@@ -128,6 +122,7 @@ class PaymentController extends Controller
         // dd( $payment);
         return view('layout_admin.pages_admin.admin_payment.list_payment', compact('payment'));
     }
+
     public function payment_vnpay(Request $request)
     {
         $data = $request->all();
@@ -138,7 +133,8 @@ class PaymentController extends Controller
         $code_cart = rand(00,9999);
          $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
         //$vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/";
-        $vnp_Returnurl = "http://127.0.0.1:8000/payment";
+        //$vnp_Returnurl = "http://127.0.0.1:8000/payment";
+        $vnp_Returnurl = route('vnpay_callback');
         $vnp_TmnCode = "NEOHV8Y9"; //Mã website tại VNPAY 
         $vnp_HashSecret = "LJCMBDTNVTXNIDBMPHWICWSKCPFJDTDQ"; //Chuỗi bí mật
 
@@ -201,6 +197,54 @@ class PaymentController extends Controller
             echo json_encode($returnData);
         }
     }
+    public function vnpay_callback(Request $request){
+        // dd('abc');
+    $vnp_ResponseCode = $request->get('vnp_ResponseCode');
+    $vnp_TxnRef = $request->get('vnp_TxnRef');
+    // dd( $vnp_ResponseCode ,$vnp_TxnRef );
+    if ($vnp_ResponseCode == '00') {
+        $list_cate = CategoryModel::where('cate_status', '1')->get();
+        $list_brand = BrandModel::where('brand_status', '1')->get();
+        //$data = $request->ship;
+        $order = new OrderModal();
+        $order['order_id'] = $vnp_TxnRef;
+        $order['cus_id'] = Session::get('cus_id');
+        $order['ship_id'] = Session::get('shipping_id');
+        $order['pay_id'] = 2;
+        $order['order_total'] = Cart::total();
+        $order['order_status'] = 1;
+        $order->save();
+        $order_id = $order->id;
+        // dd($order_id); 
+        //$order_id = DB::table('tbl_order')->insertGetId($order);
+        //insert order_detail
+        $content =  Cart::content();
+        foreach ($content as $val) {
+            $order_detail = new OrderDetailModel();
+            $order_detail['order_id'] = $order_id;
+            $order_detail['product_id'] = $val->id;
+            $order_detail['product_name'] = $val->name;
+            $order_detail['product_price'] =  $val->price;
+            $order_detail['size'] = $val->options->size;
+            $order_detail['product_quantity'] = $val->qty;
+            $order_detail->save();
+            
+            $update_product_id = $val->id;
+            $update_product_qty = $val->qty;
+            $update_product = DB::table('tbl_warehouse')->where('product_id', $update_product_id)
+                ->update(['quantity' => DB::raw('quantity - ' . $update_product_qty)]);
+                Cart::destroy(); //reset giỏ hàng
+                return view('layout_user.page_user.payment_product.ship_code', compact('list_cate', 'list_brand'));
+     
+        }
+    } else {
+        // Thanh toán thất bại
+        // Xử lý các bước khác nếu cần thiết
+    }
+
+    // Trả về phản hồi cho VNPAY (nếu cần)
+    // ...
+}
     public function delete_paymethod($pay_id)
     {
         PaymentModel::where('pay_id', $pay_id)->delete();

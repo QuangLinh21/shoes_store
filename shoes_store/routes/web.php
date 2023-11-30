@@ -62,6 +62,11 @@ Route::get('add_quantity',[ProductController::class,'add_quantity']);
 Route::post('update_kho_product',[ProductController::class,'update_kho_product']);
 Route::get('plus_product/{kho_id}',[ProductController::class,'plus_product']);
 Route::post('plus_kho_product/{kho_id}',[ProductController::class,'plus_kho_product']);
+
+Route::post('add_to_cart',[CartController::class,'add_to_cart']);
+Route::get('update_cart_qty/{rowId}',[CartController::class,'update_cart_qty']);
+Route::post('update_size',[CartController::class,'update_size']);
+Route::get('delete_cart_item/{rowId}',[CartController::class,'delete_cart_item']);
 //news
 Route::resource('news','App\Http\Controllers\NewController');
 Route::get('/active-new/{new_id}',[NewController::class,'active_cate']);
@@ -78,10 +83,7 @@ Route::get('filter_brand',[BrandController::class,'filter_brand']);
 Route::get('filter_category',[CategoryController::class,'filter_category']);
 Route::resource('cart','App\Http\Controllers\CartController');
 Route::get('show_cart',[CartController::class,'show_cart']);
-Route::post('add_to_cart',[CartController::class,'add_to_cart']);
-Route::post('update_cart_qty',[CartController::class,'update_cart_qty']);
-Route::post('update_size',[CartController::class,'update_size']);
-Route::get('delete_cart_item/{product_id}',[CartController::class,'delete_cart_item']);
+
 
 //Customer
 Route::resource('customer','App\Http\Controllers\AccountController');
@@ -89,7 +91,8 @@ Route::get('login_acc',[AccountController::class,'login_acc']);
 Route::post('login_user',[AccountController::class,'login_user']);
 Route::get('checkout_user',[AccountController::class,'checkout_user']);
 Route::get('payment',[AccountController::class,'payment']);
-// Route::get('admin_bill',[AccountController::class,'admin_bill']);
+Route::get('about_user',[AccountController::class,'about_user']);
+Route::get('show_order_user/{order_id}',[AccountController::class,'show_order_user']);
 
 //payment
 Route::resource('payments','App\Http\Controllers\PaymentController');
@@ -100,9 +103,12 @@ Route::post('payment_vnpay',[PaymentController::class,'payment_vnpay']);
 Route::get('delete_paymethod/{pay_id}',[PaymentController::class,'delete_paymethod']);
 Route::get('active_paymethod/{pay_id}',[PaymentController::class,'active_paymethod']);
 Route::get('unactive_paymethod/{pay_id}',[PaymentController::class,'unactive_paymethod']);
+Route::get('vnpay_callback',[PaymentController::class,'vnpay_callback'])->name('vnpay_callback');;
 Route::get('admin_bill',[AdminController::class,'admin_bill']);
+Route::get('admin_bill_success',[AdminController::class,'admin_bill_success']);
 Route::get('remove_order/{order_id}',[AdminController::class,'remove_order']);
 Route::get('bill_detail/{order_id}',[AdminController::class,'bill_detail']);
+Route::get('xuatbill/{order_id}',[AdminController::class,'xuatbill']);
 
 //
 Route::get('order_total',[AdminController::class,'order_total']);

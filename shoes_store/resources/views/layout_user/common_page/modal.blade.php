@@ -73,10 +73,10 @@
                                             {{-- <input type="number"  min="1" max="5"> --}}
                                             <input type="number" name="qty" min="1" max="5" step="1" value="1"></div>
                                              <input type="hidden" id="product_id" name="product_id">
-                                             <h3 id="qty_product_kho"></h3>
-                                        <ul class="product-action d-flex-center mb--0">
+                                             {{-- <h3 id="qty_product_kho"></h3> --}}
+                                             <ul class="product-action d-flex-center mb--0">
                                             <li class="add-to-cart"><button class="axil-btn btn-bg-primary">Thêm vào giỏ hàng</button></li>
-                                            <li class="wishlist"><a href="wishlist.html" class="axil-btn wishlist-btn"><i class="far fa-heart"></i></a></li>
+                                            <li class="wishlist"><a href="#" class="axil-btn wishlist-btn"><i class="far fa-heart"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>

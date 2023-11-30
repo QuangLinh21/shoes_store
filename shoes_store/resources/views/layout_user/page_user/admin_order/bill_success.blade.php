@@ -70,7 +70,7 @@
                                         <?php
                                     if ($item->order_status == 0) {
                                     ?>
-                                    <a href="{{ URL::to('xuatbill/'.$item->order_id) }}"
+                                    <a href="{{ URL::to('xuatbill/' . $item->order_id) }}"
                                         class="btn status_btn_st text-white">Xuất hóa đơn</a>
                                     <?php
                                     } 

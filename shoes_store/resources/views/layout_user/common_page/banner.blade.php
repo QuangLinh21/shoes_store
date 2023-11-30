@@ -3,8 +3,8 @@
         <div class="row align-items-center">
             <div class="col-xl-6 col-lg-6">
                 <div class="main-slider-content">
-                    <span class="subtitle"><i class="fas fa-fire"></i>Largest NQL store</span>
-                    <h1 class="title">Discover, collect, and sell extraordinary NQL</h1>
+                    <span class="subtitle"><i class="fas fa-fire"></i>NQL store</span>
+                    <h2 class="title">Hãy mang những giấc mơ của bạn lên đôi chân để dẫn lối giấc mơ đó thành hiện thực</h2>
                     <div class="shop-btn">
                         <a href="shop.html" class="axil-btn btn-bg-white right-icon">Explore <i
                                 class="fal fa-long-arrow-right"></i></a>

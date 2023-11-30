@@ -48,8 +48,7 @@
                                                 class="currency-symbol">VNĐ</span></td>
                                         <td class="product-quantity" data-title="Số lượng">
                                             <div class="" data-title="Số lượng">
-                                                <form id="updateCartForm" action="{{ URL::to('update_cart_qty') }}"
-                                                    method="post">
+                                                <form id="updateCartForm" action="{{URL::to('update_cart_qty/'.$item->rowId)}}" method="get">
                                                     @csrf
                                                     <input type="number" name="cart_qty" class="quantity-input"
                                                         value="{{ $item->qty }}">
@@ -75,7 +74,7 @@
                         ?>
                         <span class="currency-symbol">VNĐ</span>
                     </td>
-                    <td class="product-remove"><a href="{{ URL::to('delete_cart_item/' . $item->rowId) }}"
+                    <td class="product-remove"><a href="{{URL::to('delete_cart_item/'.$item->rowId) }}"
                             class="remove-wishlist" onclick="return confirm('Bạn có muốn xóa danh mục này không?')"><i
                                 class="fal fa-times"></i></a></td>
 
@@ -138,7 +137,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             var quantityInput = document.querySelector('.quantity-input');
             var updateCartForm = document.getElementById('updateCartForm');
-
             // Bắt sự kiện thay đổi giá trị trong input
             quantityInput.addEventListener('change', function() {
                 // Tự động submit form khi giá trị thay đổi

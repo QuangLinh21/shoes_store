@@ -25,17 +25,17 @@ $full_name = Session::get('full_name');
 @endphp --}}
 <section class="error-page onepage-screen-area">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
+        <div class="row align-items-center d-flex flex-column-reverse justify-content-center text-center">
+            <div class="col-lg-12">
                 <div class="content" data-sal="slide-up" data-sal-duration="800" data-sal-delay="400">
                    {{-- <H3 class="text-center">Khách hàng {{$full_name}} thân mến !</H3> --}}
                    <h5>Cảm ơn bạn đã mua sản phẩm của cửa hàng chúng tôi</h5>
                    <p><i>Khi nhận hàng bạn hãy kiểm tra và phản hồi về chất lượng sản phẩm của chúng tôi nhé. Xin chân thành cảm ơn bạn !!</i></p>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <div class="thumbnail" data-sal="zoom-in" data-sal-duration="800" data-sal-delay="400">
-                    <h1 style="border-bottom: 10px solid #FB60AE;">TRƯỜNG GIANG SHOP</h1>
+                    <img src="{{asset('frontend/assets/images/logo_new.png')}}" alt="">
                 </div>
             </div>
         </div>
@@ -48,7 +48,7 @@ $full_name = Session::get('full_name');
             <div class="col">
                 <div class="service-box service-style-2">
                     <div class="icon">
-                        <img src=" {{ URL::to('../public/frontend/assets/images/icons/service1.png') }}"
+                        <img src=" {{ URL::to('frontend/assets/images/icons/service1.png') }}"
                             alt="Service">
                     </div>
                     <div class="content">
@@ -60,7 +60,7 @@ $full_name = Session::get('full_name');
             <div class="col">
                 <div class="service-box service-style-2">
                     <div class="icon">
-                        <img src="{{ URL::to('../public/frontend/assets/images/icons/service2.png') }}"
+                        <img src="{{ URL::to('frontend/assets/images/icons/service2.png') }}"
                             alt="Service">
                     </div>
                     <div class="content">
@@ -72,7 +72,7 @@ $full_name = Session::get('full_name');
             <div class="col">
                 <div class="service-box service-style-2">
                     <div class="icon">
-                        <img src="{{ URL::to('../public/frontend/assets/images/icons/service3.png') }}"
+                        <img src="{{ URL::to('frontend/assets/images/icons/service3.png') }}"
                             alt="Service">
                     </div>
                     <div class="content">
@@ -84,7 +84,7 @@ $full_name = Session::get('full_name');
             <div class="col">
                 <div class="service-box service-style-2">
                     <div class="icon">
-                        <img src="{{ URL::to('../public/frontend/assets/images/icons/service4.png') }}"
+                        <img src="{{ URL::to('frontend/assets/images/icons/service4.png') }}"
                             alt="Service">
                     </div>
                     <div class="content">

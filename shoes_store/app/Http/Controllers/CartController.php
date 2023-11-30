@@ -45,8 +45,8 @@ class CartController extends Controller
         Cart::setGlobalTax(10);
         return view('layout_user.page_user.cart_product.show_cart',compact('list_cate','list_brand'));
     }
-    public function update_cart_qty(Request $request){
-        $rowId = $request->rowId_cart;
+    public function update_cart_qty(Request $request,$rowId){
+        // $rowId = $request->rowId_cart;
         $qty = $request->cart_qty;
         Cart::update($rowId,$qty);
         return redirect()->back();
@@ -57,8 +57,8 @@ class CartController extends Controller
         Cart::update($rowId, ['options'  => ['size' => $size]]);
         return redirect()->back();
     }
-    public function delete_cart_item($product_id){
-        Cart::update($product_id,0);
+    public function delete_cart_item($rowId){
+        Cart::update($rowId,0);
         return redirect()->back();
     }
 

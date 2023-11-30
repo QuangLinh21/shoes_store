@@ -184,11 +184,36 @@ class AdminController extends Controller
             ->join('tbl_order_detail', 'tbl_order.order_id', '=', 'tbl_order_detail.order_id')
             ->join('tbl_payment', 'tbl_order.pay_id', '=', 'tbl_payment.pay_id')
             ->join('tbl_shipping', 'tbl_order.ship_id', '=', 'tbl_shipping.ship_id')
-            ->select('tbl_order_detail.*', 'tbl_customer.cus_name', 'tbl_customer.cus_id', 'tbl_order.order_total', 'tbl_order.order_id', 'tbl_payment.pay_method', 'tbl_shipping.*')
+            ->select('tbl_order_detail.*', 'tbl_customer.cus_name', 'tbl_customer.cus_id', 'tbl_order.order_total', 'tbl_order.order_id','tbl_order.order_status', 'tbl_payment.pay_method', 'tbl_shipping.*')
             ->orderBy('tbl_order.order_id', 'desc')
+            ->where('tbl_order.order_status',0)
             ->where('tbl_shipping.cus_name', 'like', '%' . $key . '%')->paginate(15)->appends(['search' => $key]);
         //    dd($list_order);
         return view('layout_user.page_user.admin_order.list_bill',compact('list_order'));
+    }
+    public function admin_bill_success(Request $request)
+    {
+        $this->check_login();
+        $key = $request->search;
+        $list_order = DB::table('tbl_order')
+            ->join('tbl_customer', 'tbl_order.cus_id', '=', 'tbl_customer.cus_id')
+            ->join('tbl_order_detail', 'tbl_order.order_id', '=', 'tbl_order_detail.order_id')
+            ->join('tbl_payment', 'tbl_order.pay_id', '=', 'tbl_payment.pay_id')
+            ->join('tbl_shipping', 'tbl_order.ship_id', '=', 'tbl_shipping.ship_id')
+            ->select('tbl_order_detail.*', 'tbl_customer.cus_name', 'tbl_customer.cus_id', 'tbl_order.order_total', 'tbl_order.order_id','tbl_order.order_status', 'tbl_payment.pay_method', 'tbl_shipping.*')
+            ->orderBy('tbl_order.order_id', 'desc')
+            ->where('tbl_order.order_status',1)
+            ->where('tbl_shipping.cus_name', 'like', '%' . $key . '%')->paginate(15)->appends(['search' => $key]);
+        //    dd($list_order);
+        return view('layout_user.page_user.admin_order.bill_success',compact('list_order'));
+    }
+    public function xuatbill($order_id){
+       try {
+        OrderModal::where('order_id',$order_id)->update(['order_status'=>1]);
+        return Redirect()->back()->with('message','Cập nhật trạng thái thành công');
+       } catch (\Throwable $th) {
+        return Redirect()->back()->with('error','Cập nhật trạng thái không thành công !');
+       }
     }
     public function bill_detail($order_id){
         $this->check_login();

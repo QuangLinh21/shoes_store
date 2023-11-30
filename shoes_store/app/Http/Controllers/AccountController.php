@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AccountModel;
 use App\Models\BrandModel;
 use App\Models\CategoryModel;
+use App\Models\OrderModal;
 use App\Models\ShippingModal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -86,6 +87,25 @@ class AccountController extends Controller
     Session::put('cus_name',null);
     Session::put('cus_id',null);
     return Redirect::to('/');
+ }
+ public function about_user(){
+    $list_cate = CategoryModel::where('cate_status','1')->get();
+    $list_brand = BrandModel::where('brand_status','1')->get();
+    $history_sale = OrderModal::where('cus_id', Session::get('cus_id'))->where('order_status','1')->get();
+    $user_order = OrderModal::where('cus_id', Session::get('cus_id'))->where('order_status','0')->get();
+    return view('layout_user.page_user.account_user.about_user',compact('list_cate','list_brand','history_sale','user_order'));
+ }
+ public function show_order_user($order_id){
+    $list_cate = CategoryModel::where('cate_status','1')->get();
+    $list_brand = BrandModel::where('brand_status','1')->get();
+      $detail_bill = DB::table('tbl_order')
+      ->join('tbl_order_detail','tbl_order.order_id','=','tbl_order_detail.order_id')
+      ->join('tbl_product','tbl_order_detail.product_id','=','tbl_product.product_id')
+      ->select('tbl_order_detail.*','tbl_order.created_at','tbl_product.*')
+      ->where('tbl_order.order_id',$order_id)
+      ->get();
+    //   dd($detail_bill);
+    return view('layout_user.page_user.account_user.show_detail_bill_history',compact('list_cate','list_brand','detail_bill'));
  }
 
     /**

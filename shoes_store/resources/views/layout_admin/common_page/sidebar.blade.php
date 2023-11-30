@@ -87,7 +87,8 @@
                 </div>
             </a>
             <ul>
-                <li><a href="{{URL::to('admin_bill')}}">Danh sách</a></li>
+                <li><a href="{{URL::to('admin_bill')}}">Hóa đơn chưa xuất</a></li>
+                <li><a href="{{URL::to('admin_bill_success')}}">Hóa đơn đã thanh toán</a></li>
             </ul>
         </li>
         <li class>

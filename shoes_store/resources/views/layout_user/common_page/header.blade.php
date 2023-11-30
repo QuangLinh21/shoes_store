@@ -138,7 +138,7 @@
                                 <ul>
 
                                     <li>
-                                        <a href="#">
+                                        <a href="{{URL::to('about_user')}}">
                                             @php
                                                 $cus_name = Session::get('cus_name');
 
